@@ -3,12 +3,18 @@
 int	count_digit(int c)
 {
 	int	ch;
+	long num;
+
+	num = c;
 	ch = 0;
-	if (c <= 0)
-		ch = 1;
-	while (c != 0)
+	if (num <= 0)
 	{
-		c /= 10;
+		num = -num;
+		ch = 1;
+	}
+	while (num > 0)
+	{
+		num /= 10;
 		ch++;
 	}
 	return (ch);
@@ -35,7 +41,7 @@ char	*ft_itoa(int n)
 		ch[0] = '-';
 		x = -x;
 	}
-	while (i > 0 && ch[i - 1] != '-')
+	while (x > 0)
 	{
 		ch[--i] = (x % 10) + '0';
 		x /= 10;
