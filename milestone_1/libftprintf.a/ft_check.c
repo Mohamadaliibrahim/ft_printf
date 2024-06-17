@@ -5,8 +5,8 @@ void hexa(char *str, unsigned int x,int z)
 {
     int i;
     int j;
-    char hexa_digits[];
-    char HEXA_DIGITS[];
+    const char *hexa_digits;
+    const char *HEXA_DIGITS;
     char buffer[9];
 
     i = 0;
@@ -14,7 +14,7 @@ void hexa(char *str, unsigned int x,int z)
     HEXA_DIGITS = "1234567890ABCDEF";
     if (x == 0)
     {
-        str[0] = 0;
+        str[0] = '0';
         str[1] = '\0';
         return;
     }
@@ -25,13 +25,12 @@ void hexa(char *str, unsigned int x,int z)
             if (z == 1)
             {
                 buffer[i++] = hexa_digits[x % 16];
-                x /= 16;
             }
             else if (z == 0)
             {
                 buffer[i++] = HEXA_DIGITS[x % 16];
-                x /= 16;
             }
+            x /= 16;
         }
         j = i - 1;
         while (j >= 0)
@@ -97,25 +96,25 @@ void hexa(char *str, unsigned int x,int z)
     }
 }
 
-void check_arg(char *str,va_list ap)
+void check_arg(char ch,va_list ap)
 {
     int i;
+    char buffer[9];
 
-    if (*str == 'c')
+    if (ch == 'c')
         ft_putchar_fd(va_arg(ap, int), 1);
-    else if (*str == 's')
+    else if (ch == 's')
         ft_putstr_fd(va_arg(ap, char *), 1);
-    else if (str == 'i' || str == 'd')
+    else if (ch == 'i' || ch == 'd')
         ft_putnbr_fd(va_arg(ap, int), 1);
-    else if (str == 'u')
+    else if (ch == 'u')
         ft_putnbr_fd(va_arg(ap, unsigned int), 1);
-    else if (str == 'x' || str == 'X')
+    else if (ch == 'x' || ch == 'X')
     {
-        if (str == 'x')
+        if (ch == 'x')
             i = 1;
         else
             i = 0;
-        char buffer[9];
         hexa(buffer, va_arg(ap, unsigned long),i);
         ft_putstr_fd(buffer, 1);
     }

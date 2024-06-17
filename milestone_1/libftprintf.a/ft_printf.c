@@ -2,7 +2,7 @@
 
 int ft_printf(const char *hello, ...)
 {
-    char *ch;
+    const char *ch;
 
     ch = (char *)hello;
     va_list arg;
@@ -11,7 +11,7 @@ int ft_printf(const char *hello, ...)
     {
         if(*ch == '%' && *(++ch) && *(ch) != '%')
         {
-            check_arg(arg,ch);
+            check_arg(ch,arg);
         }
         else
         {
