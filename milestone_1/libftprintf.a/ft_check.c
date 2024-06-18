@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "ft_printf.h"
+#include "libft.h"
 
 void	pointer_p(char *str, void *p)
 {
@@ -37,7 +37,10 @@ void	pointer_p(char *str, void *p)
 	}
 	j = i - 1;
 	while (j >= 0)
-		str[i - 1 - j--] = buffer[j];
+	{
+		str[i - 1 - j] = buffer[j];
+		j--;
+	}
 	str[i] = '\0';
 }
 
@@ -63,11 +66,14 @@ void	hexa_u(char *str, unsigned int x)
 	}
 	j = i - 1;
 	while (j >= 0)
-		str[i - 1 - j--] = buffer[j];
+	{
+		str[i - 1 - j] = buffer[j];
+		j--;
+	}
 	str[i] = '\0';
 }
 
-void	hexa(char *str, unsigned long x, char z)
+void hexa(char *str, unsigned long x, int z)
 {
 	if (z == 'x')
 		hexa_l(str, (unsigned int)x);
@@ -97,11 +103,14 @@ void	hexa_l(char *str, unsigned int x)
 	}
 	j = i - 1;
 	while (j >= 0)
-		str[i - 1 - j--] = buffer[j];
+	{
+		str[i - 1 - j] = buffer[j];
+		j--;
+	}
 	str[i] = '\0';
 }
 
-void	check_arg(const char ch, va_list ap)
+void	check_arg(const char ch, va_list ap,int *count)
 {
 	char	buffer[9];
 
@@ -124,4 +133,6 @@ void	check_arg(const char ch, va_list ap)
 		ft_putstr_fd("0x", 1);
 		ft_putstr_fd(buffer, 1);
 	}
+	while (buffer[*count])
+		(*count)++;
 }

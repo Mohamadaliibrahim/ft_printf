@@ -20,13 +20,13 @@ int	ft_printf(const char *hello, ...)
 	int	count;
 
 	count = 0;
-	ch = (char *)hello;
+	ch = hello;
 	va_start(arg, hello);
 	while (*ch)
 	{
 		if (*ch == '%' && *(++ch) && (* ch) != '%')
 		{
-			check_arg(*ch, arg);
+			check_arg(*ch, arg, &count);
 		}
 		else
 		{
