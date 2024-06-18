@@ -24,7 +24,7 @@ int	ft_printf(const char *hello, ...)
 	va_start(arg, hello);
 	while (*ch)
 	{
-		if (*ch == '%' && *(++ch) && (* ch) != '%')
+		if (*ch == '%' && *(++ch) && (*ch) != '%')
 		{
 			check_arg(*ch, arg, &count);
 		}

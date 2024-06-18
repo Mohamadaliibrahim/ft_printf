@@ -35,11 +35,10 @@ void	pointer_p(char *str, void *p)
 		buffer[i++] = hexa_digits[x % 16];
 		x /= 16;
 	}
-	j = i - 1;
-	while (j >= 0)
+	j = 0;
+	while (i-- >= 0)
 	{
-		str[i - 1 - j] = buffer[j];
-		j--;
+		str[j++] = buffer[i];
 	}
 	str[i] = '\0';
 }
@@ -110,29 +109,88 @@ void	hexa_l(char *str, unsigned int x)
 	str[i] = '\0';
 }
 
-void	check_arg(const char ch, va_list ap,int *count)
-{
-	char	buffer[9];
+//void	check_arg(const char ch, va_list ap,int *count)
+//{
+//	char	buffer[17];
+//
+//	if (ch == 'c')
+//		ft_putchar_fd(va_arg(ap, int), 1);
+//	else if (ch == 's')
+//		ft_putstr_fd(va_arg(ap, char *), 1);
+//	else if (ch == 'i' || ch == 'd')
+//		ft_putnbr_fd(va_arg(ap, int), 1);
+//	else if (ch == 'u')
+//		ft_putnbr_fd(va_arg(ap, unsigned int), 1);
+//	else if (ch == 'x' || ch == 'X')
+//	{
+//		hexa(buffer, va_arg(ap, unsigned int), ch);
+//		ft_putstr_fd(buffer, 1);
+//	}
+//	else if (ch == 'p')
+//	{
+//		pointer_p(buffer, va_arg(ap, void *));
+//		ft_putstr_fd("0x", 1);
+//		ft_putstr_fd(buffer, 1);
+//	}
+//	while (buffer[*count])
+//		(*count)++;
+//}
 
-	if (ch == 'c')
-		ft_putchar_fd(va_arg(ap, int), 1);
-	else if (ch == 's')
-		ft_putstr_fd(va_arg(ap, char *), 1);
-	else if (ch == 'i' || ch == 'd')
-		ft_putnbr_fd(va_arg(ap, int), 1);
-	else if (ch == 'u')
-		ft_putnbr_fd(va_arg(ap, unsigned int), 1);
-	else if (ch == 'x' || ch == 'X')
-	{
-		hexa(buffer, va_arg(ap, unsigned int), ch);
-		ft_putstr_fd(buffer, 1);
-	}
+void check_arg(const char ch, va_list ap, int *count)
+{
+    char buffer[17];
+
+    if (ch == 'c')
+    {
+        char c = (char)va_arg(ap, int);
+        ft_putchar_fd(c, 1);
+        (*count)++;
+    }
+    else if (ch == 's')
+    {
+        char *str = va_arg(ap, char *);
+        if (!str)
+            str = "(null)";
+        ft_putstr_fd(str, 1);
+        while (*str++)
+            (*count)++;
+    }
+    else if (ch == 'i' || ch == 'd')
+    {
+        int num = va_arg(ap, int);
+        char *str = ft_itoa(num);
+        ft_putstr_fd(str, 1);
+        *count += ft_strlen(str);
+        free(str);
+    }
+    else if (ch == 'u')
+    {
+        unsigned int num = va_arg(ap, unsigned int);
+        char *str = ft_utoa(num);
+        ft_putstr_fd(str, 1);
+        *count += ft_strlen(str);
+        free(str);
+    }
+    else if (ch == 'x' || ch == 'X')
+    {
+        hexa(buffer, va_arg(ap, unsigned int), ch);
+        ft_putstr_fd(buffer, 1);
+        *count += ft_strlen(buffer);
+    }
 	else if (ch == 'p')
-	{
-		pointer_p(buffer, va_arg(ap, void *));
-		ft_putstr_fd("0x", 1);
-		ft_putstr_fd(buffer, 1);
-	}
-	while (buffer[*count])
-		(*count)++;
+    {
+        void *ptr = va_arg(ap, void *);
+        if (ptr == NULL)
+        {
+            ft_putstr_fd("0x0", 1);
+            *count += 3;
+        }
+        else
+        {
+            pointer_p(buffer, ptr);
+            ft_putstr_fd("0x", 1);
+            ft_putstr_fd(buffer, 1);
+            *count += 2 + ft_strlen(buffer);
+        }
+    }
 }

@@ -18,9 +18,11 @@
 # include <unistd.h>
 
 int     ft_printf(const char *hello, ...);
+char			*ft_itoa(int n);
+char *ft_utoa(unsigned int n);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
-void	check_arg(const char ch, va_list ap);
+void	check_arg(const char ch, va_list ap,int *count);
 void	hexa_l(char *str, unsigned int x);
 void	hexa(char *str, unsigned long x, int z);
 void	hexa_u(char *str, unsigned int x);
