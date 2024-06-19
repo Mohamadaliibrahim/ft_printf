@@ -6,35 +6,35 @@
 /*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:06:16 by mohamibr          #+#    #+#             */
-/*   Updated: 2024/06/18 12:07:14 by mohamibr         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:26:38 by mohamibr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 int	ft_printf(const char *hello, ...)
 {
-	const char	*ch;
-	va_list		arg;
-	int	count;
+	va_list		ap;
+	int			count;
 
 	count = 0;
-	ch = hello;
-	va_start(arg, hello);
-	while (*ch)
+	va_start(ap, hello);
+	while (*hello)
 	{
-		if (*ch == '%' && *(++ch) && (*ch) != '%')
+		if (*hello == '%' && *(++hello) && *hello != '\0')
 		{
-			check_arg(*ch, arg, &count);
+			if (*hello == '%')
+				count += ft_putchar_fd('%', 1);
+			else
+				check_arg(*hello, ap, &count);
 		}
 		else
 		{
-			ft_putchar_fd(*ch, 1);
+			ft_putchar_fd(*hello, 1);
 			count++;
 		}
-		ch++;
+		hello++;
 	}
-	va_end(arg);
+	va_end(ap);
 	return (count);
 }

@@ -1,40 +1,62 @@
-#include "libft.h"
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/15 12:35:16 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/06/15 12:41:26 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_digits(int n)
+int	count_digit(int c)
 {
-	size_t	i;
+	int		ch;
+	long	num;
 
-	i = 1;
-	while (n /= 10)
-		i++;
-	return (i);
+	num = c;
+	ch = 0;
+	if (num <= 0)
+	{
+		num = -num;
+		ch = 1;
+	}
+	while (num > 0)
+	{
+		num /= 10;
+		ch++;
+	}
+	return (ch);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char		*str_num;
-	size_t		digits;
-	long int	num;
+	int		i;
+	char	*ch;
+	long	x;
 
-	num = n;
-	digits = get_digits(n);
-	if (n < 0)
-	{
-		num *= -1;
-		digits++;
-	}
-	if (!(str_num = (char *)malloc(sizeof(char) * (digits + 1))))
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		return (ft_strdup("0"));
+	i = count_digit(n);
+	x = n;
+	ch = (char *)malloc(sizeof(char) * (i + 1));
+	if (!ch)
 		return (NULL);
-	*(str_num + digits) = 0;
-	while (digits--)
+	ch[i] = '\0';
+	if (x < 0)
 	{
-		*(str_num + digits) = num % 10 + '0';
-		num = num / 10;
+		ch[0] = '-';
+		x = -x;
 	}
-	if (n < 0)
-		*(str_num + 0) = '-';
-	return (str_num);
+	while (x > 0)
+	{
+		ch[--i] = (x % 10) + '0';
+		x /= 10;
+	}
+	return (ch);
 }
