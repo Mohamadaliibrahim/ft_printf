@@ -29,3 +29,16 @@ $>./alpha_mirror | cat -e
 $
 $>
 ```
+a z
+b y
+c x
+d w
+e v
+f u
+g t
+h s
+i r
+j q
+k p
+l o
+m n
