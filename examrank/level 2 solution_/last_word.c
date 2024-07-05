@@ -5,22 +5,23 @@ int ft_strlen(char *str)
     int i = 0;
     while (str[i])
         i++;
-    return i;
+    return (i);
 }
 
 void    check(char *str)
 {
     int i = ft_strlen(str) - 1;
-    if (str[i] == ' ')
-    while(i >= 0 && str[i] == ' ')
+    int end;
+
+    while (i >= 0 && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
         i--;
-    int end = i;
-    while (i >= 0 && str[i] != ' ')
+    end = i;
+    while (i >= 0 &&(!(str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))))
         i--;
     i++;
-    while (i <= end)
+    while(i <= end)
     {
-        write(1, &str[i], 1);
+        write(1,&str[i], 1);
         i++;
     }
 }
