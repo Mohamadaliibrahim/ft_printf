@@ -1,20 +1,52 @@
-#ifndef OPERATIONS_H
-#define OPERATIONS_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/25 12:49:43 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/07/25 12:50:29 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libftprintf.a\ft_printf.h"
-#include "lib_ft\libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-typedef struct s_node {
-    int value;
-    struct s_node *next;
-} t_node;
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include "ft_printf.h"
 
-typedef struct s_stack {
-    t_node *top;
-} t_stack;
+typedef struct s_node
+{
+	int				nbr;
+	int				index;
+	int				push_cost;
+	bool			above_median;
+	bool			cheapest;
+	struct s_node	*data;
+	struct s_node	*next;
+	struct s_node	*prev;
+}				t_node;
 
-int	ra(t_stack *a);
+// Handle errors
+
+// Stack initiation
+
+int	stack_stored(t_stack *a);
+
+// Nodes initiation
+
+// Stack utils
+
+void	sort_three(char *a);
+
+// Commands
+
+char	**ft_split(char *s, char c);
+
+// Algorithms
 
 #endif

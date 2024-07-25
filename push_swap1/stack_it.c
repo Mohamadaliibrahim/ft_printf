@@ -1,48 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/25 12:49:43 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/07/25 12:50:29 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_stack	*init_stack()
+//char	*init_stack_a(t_stack	**a, char	*av[])
+
+int	stack_len(t_stack *a)
 {
-	t_stack	*stack;
+	int	i;
 
-	stack = malloc(sizeof(t_stack));
-	stack->top = NULL;
-	return (stack);
-}
-
-void	push(t_stack *stack, int value)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	new_node->value = value;
-	new_node->next = stack->top;
-	stack->top = new_node;
-}
-
-int	pop(t_stack *stack)
-{
-	if (stack->top == NULL)
+	i = 0;
+	while (a)
 	{
-		return (-1);
+		i++;
+		a = a->next;
 	}
-	int		value;
-	t_node	*temp;
-
-	temp = stack->top;
-	value = temp->value;
-	stack->top = stack->top->next;
-	free(temp);
-	return (value);
+	return (i);
 }
 
-void	print_stack(t_stack *stack)
+int	stack_stored(t_stack **a)
 {
-	t_node	*current;
+	int	z;
 
-	current = stack->top;
-	while (current != NULL) 
+	if (a == NULL)
+		return (1);
+	z = a->data;
+	a = a->next;
+	while (a)
 	{
-		printf("%d\n", current->value);
-		current = current->next;
+		if (z > a->data)
+			return (0);
+		z = a->data;
+		a = a->next;
+	}
+	return (1);
+}
+
+void	sort_three(t_stack **a)
+{
+	if (stack_stored(a))
+		do_it(a);
+	else
+	{
+
 	}
 }

@@ -1,42 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/25 12:49:43 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/07/25 12:50:29 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-
-int	check(char *str)
+int	main(int ac, char *av[])
 {
-	int	i;
+	t_stack	*a;
+	t_stack	*b;
 
-	i = 0;
-	while (str[i])
+	a = NULL;
+	b = NULL;
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+		return (1);
+	else if (ac == 2)
+		av = ft_split(av[1], ' ');
+	init_stack_a(&a, av + 1);
+	if (!stack_stored(a))
 	{
-		if (str[i] >= ' ' || (str[i] >= 9 && str[i] <= 13))
-			return (0);
-		i++;
+		if (stack_len(a) == 2)
+			sa(&a, false);
+		else if (stack_len(a) == 3)
+			sort_three(&a);
+		else
+			sort_stack(&a, &b);
 	}
-	return (1);
-}
-
-int	main(int ac,char *av[])
-{
-	if (ac > 2)
-	{
-		if (check(av[1]))
-		{
-			int	i;
-
-			i = 1;
-			while (i < ac)
-			{
-				stack_it(av[i]);
-			}
-		}
-	}
-	else
-	{
-		char	*c;
-
-		c = ft_split(av[1]);
-		stack_it(c);
-	}
-	ft_printf(" ");
+	free_stack (&a);
 	return (0);
 }
