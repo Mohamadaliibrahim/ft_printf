@@ -35,7 +35,7 @@ int	stack_stored(t_stack **a)
 		return (1);
 	z = a->data;
 	a = a->next;
-	while (a)
+	while (a->next)
 	{
 		if (z > a->data)
 			return (0);
@@ -47,10 +47,14 @@ int	stack_stored(t_stack **a)
 
 void	sort_three(t_stack **a)
 {
-	if (stack_stored(a))
-		do_it(a);
-	else
-	{
+	t_stack	*bigest_node;
 
-	}
+	bigest_node = find_max(*a);
+	if (bigest_node == *a)
+		ra(a, false);
+	else if ((*a)->next == bigest_node)
+		rra(a, false);
+	if ((*a)->nbr > (*a)->next->nbr)
+		sa(a, false);
 }
+// 2 more!!

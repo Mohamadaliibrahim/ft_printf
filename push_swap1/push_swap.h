@@ -35,6 +35,8 @@ typedef struct s_node
 
 // Stack initiation
 
+int	stack_len(t_stack *a);
+void	sort_three(t_stack **a);
 int	stack_stored(t_stack *a);
 
 // Nodes initiation
