@@ -1,30 +1,34 @@
-# NAME = push_swap
+NAME                = push_swap
+CC                  = gcc
+CFLAGS              = -Wall -Wextra -Werror
+RM                  = rm -f
 
-# SOURCES = push_swap.c stack_it.c utils.c
+SOURCES = \
+	ft_strlen.c   ft_putendl_fd.c  \
+	ft_printf.c ft_check.c ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c \
+	ft_utoa.c ft_itoa.c ft_strdup.c ft_check1.c a_to_b.c b_to_a.c error.c push_swap.c \
+	push.c rev_rotate.c rotate.c sort_3.c sort_it.c split.c stack_uti.c stackin_it.c \
+	swap_it.c ft_isdigit.c\
 
-# OBJECTS = $(SOURCES:.c=.o)
+OBJS = $(SOURCES:.c=.o)
 
-# CC = gcc
+start:
+	@make all
 
-# CFLAGS = -Wall -Wextra -Werror
+all: $(NAME)
 
-# all: $(NAME)
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-# $(NAME): $(OBJECTS)
-# 	$(AR) -r $@ $?
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-# bonus: $(OBJECTS)
-# 	$(AR) -r $(NAME) $?
+clean:
+	@$(RM) $(OBJS)
 
-# %.o: %.c
-# 	$(CC) -c $(CFLAGS) $?
+fclean: clean
+	@$(RM) $(NAME)
 
-# clean:
-# 	rm -f $(OBJECTS)		
+re: fclean all
 
-# fclean: clean
-# 	rm -f $(NAME)
-
-# re: fclean all
-
-# .PHONY: all bonus clean fclean re
+.PHONY: start all clean fclean re

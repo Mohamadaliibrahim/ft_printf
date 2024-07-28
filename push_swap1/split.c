@@ -46,7 +46,7 @@ static char	*get_next_word(char *s, char c)
 	return (next_word);
 }
 
-char	**ft_split(char *s, char c)
+char	**split(char *s, char c)
 {
 	int		words_count;
 	char	**result_array;

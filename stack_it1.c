@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sa(t_stack *a, int c)
+void	sa(t_stack *a, bool c)
 {
 	int	z;
 	int	y;
@@ -12,11 +12,11 @@ void	sa(t_stack *a, int c)
 		a->data = y;
 		a->next->data = z;
 	}
-	if (c)
+	if (!c)
 		ft_printf("sa\n");
 }
 
-void	sb(t_stack *a, int c)
+void	sb(t_stack *a, bool c)
 {
 	int	z;
 	int	y;
@@ -28,7 +28,7 @@ void	sb(t_stack *a, int c)
 		a->data = y;
 		a->next->data = z;
 	}
-	if (c)
+	if (!c)
 		ft_printf("sb\n");
 }
 
@@ -38,7 +38,7 @@ void	ss(t_stack *a, t_stack *b, int c)
 	sb(b, c);
 }
 
-void	ra(t_stack *a, int c)
+void	ra(t_stack *a, bool c)
 {
 	t_stack	*temp;
 	int		first_data;
@@ -53,11 +53,11 @@ void	ra(t_stack *a, int c)
 		temp = temp->next;
 	}
 	a->data = first_data;
-	if (c)
+	if (!c)
 		ft_printf("ra\n");
 }
 
-void	rb(t_stack *a, int c)
+void	rb(t_stack *a, bool c)
 {
 	t_stack	*temp;
 	int		first_data;
@@ -72,7 +72,7 @@ void	rb(t_stack *a, int c)
 		temp = temp->next;
 	}
 	a->data = first_data;
-	if (c)
+	if (!c)
 		ft_printf("rb\n");
 }
 // stop!!

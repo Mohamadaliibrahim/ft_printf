@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	rra(t_stack *a, int c)
+void	rra(t_stack *a, bool c)
 {
 	t_stack	*temp;
 	t_stack	*last;
@@ -21,11 +21,11 @@ void	rra(t_stack *a, int c)
 	temp->next = last;
 	last->data = a->data;
 	a->data = last_data;
-	if (c)
+	if (!c)
 		ft_printf("rra\n");
 }
 
-void	rrb(t_stack *a, int c)
+void	rrb(t_stack *a, bool c)
 {
 	t_stack	*temp;
 	t_stack	*last;
@@ -46,19 +46,44 @@ void	rrb(t_stack *a, int c)
 	temp->next = last;
 	last->data = a->data;
 	a->data = last_data;
-	if (c)
+	if (!c)
 		ft_printf("rrb\n");
 }
 
-void	rrr(t_stack *a, t_stack *b, int c)
+void	rrr(t_stack *a, t_stack *b, bool c)
 {
 	rra(a, c);
 	rrb(b, c);
 }
 
-void	rr(t_stack	*a, t_stack	*b, int	c)
+static void	rotate_both(t_stack_node **a,
+						t_stack_node **b,
+						t_stack_node *cheapest_node)
 {
-	ra(a, c);
-	rb(b, c);
+	while (*b != cheapest_node->target_node
+		&& *a != cheapest_node)
+		rr(a, b, false);
+	current_index(*a);
+	current_index(*b);
 }
-// 1 more
+
+void	set_cheapest(t_stack *stack)
+{
+	long	cheapest_value;
+	t_stack	*cheapest_node;
+
+	if (!stack)
+		return ;
+	cheapest_value = LONG_MAX;
+	while (stack)
+	{
+		if (stack->push_cost < cheapest_value)
+		{
+			cheapest_value = stack->push_cost;
+			cheapest_node = stack;
+		}
+		stack = stack->next;
+	}
+	cheapest_node->cheapset = true;
+}
+//stop !!
