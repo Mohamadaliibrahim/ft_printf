@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hshehab <hshehab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 17:06:41 by mohamibr          #+#    #+#             */
-/*   Updated: 2024/06/13 17:06:58 by mohamibr         ###   ########.fr       */
+/*   Created: 2024/06/20 12:29:17 by hshehab           #+#    #+#             */
+/*   Updated: 2024/06/20 12:29:20 by hshehab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr(char *s)
 {
-	write(fd, s, ft_strlen(s));
+	int	n;
+
+	if (!s)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	n = ft_strlen(s);
+	write (1, s, n);
+	return (n);
 }

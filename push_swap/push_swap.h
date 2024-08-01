@@ -3,7 +3,8 @@
 
 # include <stdbool.h>
 # include <limits.h>
-# include "ft_printf.h"
+# include "printf/ft_printf.h"
+# include <stddef.h>
 
 typedef struct s_stack_node
 {
@@ -25,7 +26,7 @@ void			free_errors(t_stack_node **a);
 
 //***Stack initiation
 void			init_stack_a(t_stack_node **a, char **argv);
-char			**split(char *s, char c);
+char			**ft_split(char *s, char c);
 
 //***Nodes initiation
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);
@@ -64,5 +65,13 @@ void			move_b_to_a(t_stack_node **a, t_stack_node **b);
 void			min_on_top(t_stack_node **a);
 void			ft_putendl_fd(char *s, int fd);
 int				ft_isdigit(int c);
-
+void			free_split(char **split);
+long			ft_atoi(char *nptr);
+char			**check_alpha(char *av[]);
+int				alpha(char *str);
+int				check_for_error(char *str[]);
+int				ft_strcmp(const char *s1, const char *s2);
+bool			is_valid_number(char *str);
+char			*ft_strdup(const char *src);
+int				ft_isdigit(int c);
 #endif

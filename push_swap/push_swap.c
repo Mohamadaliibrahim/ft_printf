@@ -1,47 +1,114 @@
-// push_swap.c
-#include <stdio.h>
-#include <stdlib.h>
-#include "stack.h"
-#include "operations.h"
+#include "push_swap.h"
 
-void free_stack(t_stack *stack) {
-    while (!is_empty(stack)) {
-        pop(stack);
-    }
-    free(stack);
+bool	has_duplicates(char **array)
+{
+	int	i;
+	int	j;
+
+	while (array[i])
+	{
+		j = i + 1;
+		while (array[j])
+		{
+			if (ft_strcmp(array[i], array[j]) == 0)
+				return (true);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (array[i])
+	{
+		if (is_valid_number(array[i]) == false)
+			return (false);
+		i++;
+	}
+	return (false);
 }
 
-void sort_stack(t_stack *a, t_stack *b) {
-    // Implement your sorting algorithm here
-    // This is a placeholder for the actual sorting algorithm
-    // Use the operations defined earlier to sort the stack
+int	check_for_error(char *str[])
+{
+	int	i;
+	int	j;
+	int	c;
+	int	d;
 
-    // Example (inefficient sorting logic for demonstration):
-    while (!is_empty(a)) {
-        pb(a, b); // Use pb operation
-    }
-    while (!is_empty(b)) {
-        pa(a, b); // Use pa operation
-    }
+	i = 0;
+	while (str[i])
+	{
+		c = ft_atoi(str[i]);
+		j = 0;
+		while (j < i)
+		{
+			d = ft_atoi(str[j]);
+			if (d == c)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
-int main(int argc, char **argv) {
-    if (argc < 2) {
-        return 0;
-    }
+int	alpha(char *str)
+{
+	int	i;
 
-    t_stack *a = create_stack();
-    t_stack *b = create_stack();
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
-    for (int i = 1; i < argc; i++) {
-        int value = atoi(argv[i]);
-        push(a, value);
-    }
+char	**check_alpha(char *av[])
+{
+	if (alpha(av[1]))
+	{
+		ft_printf("Error\n");
+		exit (1);
+	}
+	av = ft_split(av[1], ' ');
+	if (!check_for_error(av))
+	{
+		free_split(av);
+		ft_printf("Error\n");
+		free (av);
+		exit (1);
+	}
+	return (av);
+}
 
-    sort_stack(a, b);
+int	main(int ac, char *av[])
+{
+	t_stack_node	*a;
+	t_stack_node	*b;
 
-    free_stack(a);
-    free_stack(b);
-
-    return 0;
+	a = NULL;
+	b = NULL;
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+		return (1);
+	if (ac == 2)
+		av = check_alpha(av);
+	if (has_duplicates(av) == false)
+	{
+		init_stack_a(&a, av + 1);
+		if (!stack_sorted(a))
+		{
+			if (stack_len(a) == 2)
+				sa(&a, false);
+			else if (stack_len(a) == 3)
+				sort_three(&a);
+			else
+				sort_stacks(&a, &b);
+		}
+	}
+	if ()
+	free_split(av);
+	free_stack(&b);
+	free_stack(&a);
+	return (0);
 }
