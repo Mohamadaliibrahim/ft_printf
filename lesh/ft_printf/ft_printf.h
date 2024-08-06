@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef pRINTF_H
-# define pRINTF_H
+#ifndef	ft_printf_H
+# define ft_printf_H
 
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-int		printf(const char *hello, ...);
+int		ft_printf(const char *hello, ...);
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *src);
 char	*ft_utoa(unsigned int n);

@@ -4,8 +4,6 @@ int	stack_len(t_stack *a)
 {
 	int	i;
 
-	if (!a || !(*a))
-		return ;
 	i = 0;
 	while (a)
 	{
@@ -33,7 +31,7 @@ int	stack_is_sorted(t_stack *a)
 	return (1);
 }
 
-void	sort_three_1(t_stack **a,)
+void	sort_three_1(t_stack **a)
 {
 	t_stack	*x;
 	t_stack	*y;
@@ -63,12 +61,11 @@ void	sort_three(t_stack **a)
 	t_stack	*y;
 	t_stack	*z;
 
-	if (!a || !*a || !(*a)->next || stack_is_sorted(a))
+	if (!a || !*a || !(*a)->next || stack_is_sorted(*a))
 		return ;
 	x = *a;
 	y = x->next;
 	z = y->next;
-
 	if (x->data > y->data && y->data < z->data && x->data < z->data)
 	{
 		sa(a);
@@ -84,8 +81,9 @@ void	sort_three(t_stack **a)
 
 void	free_stack(t_stack *stack)
 {
-	t_stack = *temp;
+	t_stack	*temp;
 
+	temp = stack;
 	if (!stack)
 		return ;
 	while (stack)

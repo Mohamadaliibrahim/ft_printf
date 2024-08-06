@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 19:22:45 by mohamibr          #+#    #+#             */
-/*   Updated: 2024/06/19 19:23:01 by mohamibr         ###   ########.fr       */
+/*   Created: 2024/06/19 19:26:15 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/06/19 19:27:59 by mohamibr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int	ft_strlen(const char *str)
+char	*ft_utoa(unsigned int num)
 {
-	int	i;
+	char	buffer[11];
+	int		i;
 
-	i = 0;
-	while (str[i] != '\0')
+	i = 10;
+	buffer[i] = '\0';
+	if (num == 0)
 	{
-		i++;
+		buffer[--i] = '0';
 	}
-	return (i);
+	else
+	{
+		while (num > 0)
+		{
+			buffer[--i] = '0' + (num % 10);
+			num /= 10;
+		}
+	}
+	return (ft_strdup(&buffer[i]));
 }

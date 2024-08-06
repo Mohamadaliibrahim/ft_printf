@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 17:06:01 by mohamibr          #+#    #+#             */
-/*   Updated: 2024/06/13 17:06:17 by mohamibr         ###   ########.fr       */
+/*   Created: 2024/06/11 15:44:48 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/06/11 18:22:35 by mohamibr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "push_swap.h"
 
-int	putchar_fd(char c, int fd)
+int	ft_strlen(const char *str)
 {
-	write(fd, &c, 1);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

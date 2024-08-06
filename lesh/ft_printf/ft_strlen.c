@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 19:22:11 by mohamibr          #+#    #+#             */
-/*   Updated: 2024/06/19 19:22:16 by mohamibr         ###   ########.fr       */
+/*   Created: 2024/06/19 19:22:45 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/06/19 19:23:01 by mohamibr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	putnbr_fd(int n, int fd)
+int	ft_strlen(const char *str)
 {
-	if (n == -2147483648)
-		putstr_fd("-2147483648", fd);
-	else
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (n < 0)
-		{
-			putchar_fd('-', fd);
-			n = n * -1;
-		}
-		if (n >= 9)
-		{
-			putnbr_fd(n / 10, fd);
-		}
-		putchar_fd((n % 10) + '0', fd);
+		i++;
 	}
+	return (i);
 }

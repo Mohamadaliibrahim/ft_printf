@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa.c                                          :+:      :+:    :+:   */
+/*   putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 19:26:15 by mohamibr          #+#    #+#             */
-/*   Updated: 2024/06/19 19:27:59 by mohamibr         ###   ########.fr       */
+/*   Created: 2024/06/19 19:22:11 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/06/19 19:22:16 by mohamibr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-char	*ft_utoa(unsigned int num)
+void	putnbr_fd(int n, int fd)
 {
-	char	buffer[11];
-	int		i;
-
-	i = 10;
-	buffer[i] = '\0';
-	if (num == 0)
-	{
-		buffer[--i] = '0';
-	}
+	if (n == -2147483648)
+		putstr_fd("-2147483648", fd);
 	else
 	{
-		while (num > 0)
+		if (n < 0)
 		{
-			buffer[--i] = '0' + (num % 10);
-			num /= 10;
+			putchar_fd('-', fd);
+			n = n * -1;
 		}
+		if (n >= 9)
+		{
+			putnbr_fd(n / 10, fd);
+		}
+		putchar_fd((n % 10) + '0', fd);
 	}
-	return (ft_strdup(&buffer[i]));
 }

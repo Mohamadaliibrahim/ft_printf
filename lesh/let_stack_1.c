@@ -20,3 +20,16 @@ t_stack	*create_stack_from_args(int ac, char **av)
 	}
 	return (stack);
 }
+
+void	lets_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free (str);
+}

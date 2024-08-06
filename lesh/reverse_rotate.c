@@ -24,19 +24,19 @@ void	reverse_rotate(t_stack **stack)
 void	rra(t_stack **a)
 {
 	reverse_rotate(a);
-	printf("rra\n");
+	ft_printf("rra\n");
 }
 
 void	rrb(t_stack **b)
 {
 	reverse_rotate(b);
-	printf("rrb\n");
+	ft_printf("rrb\n");
 }
 
 void	rrr(t_stack *a, t_stack *b)
 {
 	reverse_rotate(&a);
 	reverse_rotate(&b);
-	printf("rrr");
+	ft_printf("rrr");
 }
 //stop!

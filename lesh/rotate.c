@@ -22,19 +22,19 @@ static void	rotate(t_stack **stack)
 void	ra(t_stack **a)
 {
 	rotate(a);
-	printf("ra\n");
+	ft_printf("ra\n");
 }
 
 void	rb(t_stack **b)
 {
 	rotate(b);
-	printf("rb\n");
+	ft_printf("rb\n");
 }
 
 void	rr(t_stack **a, t_stack **b)
 {
 	rotate(a);
 	rotate(b);
-	printf("rr\n");
+	ft_printf("rr\n");
 }
 //stop!
