@@ -6,7 +6,6 @@ void	lets_push(t_stack **a, t_stack **b)
 {
 	t_stack	*temp;
 	t_stack	*z;
-	int		i;
 
 	z = *a;
 	ft_printf("lets(a):\n");
@@ -15,19 +14,21 @@ void	lets_push(t_stack **a, t_stack **b)
 		ft_printf("%d\n", z->data);
 		z = z->next;
 	}
-	i = stack_len(*a);
-	while (i > 0)
-	{
-		pb(a, b);
-		i--;
-	}
+	pb(a, b);
+	pb(a, b);
 	temp = *b;
 	ft_printf("lets(b):\n");
 	while (temp)
 	{
-		ft_printf("%d\n", temp->data);
+		ft_printf("b: %d\n", temp->data);
 		temp = temp->next;
 	}
+	//z = *a;
+	//while (z)
+	//{
+	//	ft_printf("a: %d\n", z->data);
+	//	z = z->next;
+	//}
 	free_stack(z);
 	free_stack(temp);
 }

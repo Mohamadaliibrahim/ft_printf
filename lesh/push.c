@@ -1,5 +1,21 @@
 #include "push_swap.h"
 
+int	pop(t_stack **stack)
+{
+	t_stack	*temp;
+	int		data;
+
+	if (!stack || !*stack)
+		return (0);
+
+	temp = *stack;
+	data = temp->data;
+	*stack = (*stack)->next;
+	free(temp);
+	return (data);
+}
+
+
 static	void	push(t_stack **src, t_stack **dst)
 {
 	t_stack	*tmp;

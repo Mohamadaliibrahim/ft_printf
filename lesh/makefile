@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 EXTRAFLAGS = -lreadline -lncurses
 
-SRC =	check.c ft_split.c ft_strlcpy.c ft_strlen.c ft_substr.c\
+SRC =	check.c check1.c ft_split.c ft_strlcpy.c ft_strlen.c ft_substr.c\
 		let_stack_0.c let_stack_1.c push_swap.c reverse_rotate.c\
 		rotate.c swap.c push.c ft_strdup.c
 
@@ -21,7 +21,6 @@ $(EXEC): $(OBJ)
 
 $(LIB):
 	$(MAKE) -C $(LIBDIR)
-	cp $(LIBDIR)/libftprintf.a .
 
 clean:
 	rm -f $(OBJ)

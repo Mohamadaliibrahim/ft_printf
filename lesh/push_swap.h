@@ -3,9 +3,15 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 # include <stdio.h>
 # include <string.h>
 # include "ft_printf/ft_printf.h"
+
+typedef struct s_node {
+	int				value;
+	struct s_node	*next;
+}				t_node;
 
 typedef struct s_stack
 {
@@ -19,11 +25,18 @@ typedef struct s_stack
 
 		/*Algorithm*/
 
-void	sort_three_1(t_stack **a);
-void	sort_three(t_stack **a);
+//void	lets_continue(t_stack *a, t_stack *b);
+//void	sort_three_1(t_stack **a);
+//void	sort_three(t_stack **a);
+//void	sort_four(t_stack **a, t_stack **b);
+//void	sort_five(t_stack **a, t_stack **b);
+//void	sort_five1(t_stack **a, t_stack **b);
+//void	sort_five2(t_stack **a, t_stack **b);
 
 		/*Error_check*/
 
+void	ft_error(char *msg);
+int		ft_isdigit(int c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 int		ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
@@ -40,7 +53,7 @@ t_stack	*create_stack_from_args(int ac, char **av);
 void	free_stack(t_stack *stack);
 int		stack_len(t_stack *a);
 
-		/*Rules*/
+		/*Operations*/
 
 void	sa(t_stack **a);
 void	sb(t_stack **b);
@@ -51,12 +64,10 @@ void	rb(t_stack **b);
 void	rra(t_stack **a);
 void	rrb(t_stack **b);
 
+		/*Utils*/
 
-
-
-
-
-
+int		min(int a, int b);
+int		abs(int n);
 void	ft_check_args(int ac, char **av);
 void	ft_validate_args(char **av, int flag, int i);
 int		ft_isnum(char *num);
@@ -65,7 +76,8 @@ int		ft_contains(int num, char **av, int i);
 void	ft_error(char *msg);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_isdigit(int c);
-
+int		find_index(t_stack *a, int value);
+int		find_min_value(t_stack *a);
 
 
 
