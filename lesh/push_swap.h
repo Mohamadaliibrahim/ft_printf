@@ -68,6 +68,8 @@ void	assign_targets(t_stack *a, t_stack *b);
 t_node	*find_index(t_stack *a, int value);
 int		a_to_b_find_target(t_stack *b, int value);
 int		get_cost(t_stack *x, int position);
+
+
 		/*Error_check*/
 
 void	ft_error(char *msg);
@@ -113,6 +115,7 @@ void	ft_putendl_fd(char *s, int fd);
 int		ft_isdigit(int c);
 
 int		find_min_value(t_stack *a);
+t_stack	*init_stack(void);
 
 
 

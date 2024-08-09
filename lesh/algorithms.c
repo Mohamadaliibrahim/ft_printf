@@ -54,12 +54,19 @@ t_node	*b_to_a_find_target(t_stack *a, int b_value)
 
 void	assign_targets(t_stack *a, t_stack *b)
 {
-	t_node	*current_b;
+    t_node	*current_b;
 
-	current_b = b->top;
-	while (current_b)
-	{
-		current_b->target_node = b_to_a_find_target(a, current_b->value);
-		current_b = current_b->next;
-	}
+    if (a == NULL || b == NULL) // Check if either stack is NULL
+    {
+        printf("Error: Stack 'a' or 'b' is NULL in assign_targets.\n");
+        return;
+    }
+
+    current_b = b->top;
+    while (current_b)
+    {
+        current_b->target_node = b_to_a_find_target(a, current_b->value);
+        current_b = current_b->next;
+    }
 }
+

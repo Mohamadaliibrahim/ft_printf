@@ -87,16 +87,20 @@ void	sort_three(t_stack **a)
 
 void	free_stack(t_stack *stack)
 {
-	t_node	*temp;
+    t_node	*temp;
 
-	temp = stack->top;
-	while (stack->top)
-	{
-		temp = stack->top;
-		stack->top = stack->top->next;
-		free(temp);
-	}
-	free(stack);
+    if (stack == NULL) // Check if stack is NULL
+        return;
+
+    while (stack->top)
+    {
+        temp = stack->top;
+        stack->top = stack->top->next;
+        free(temp);
+    }
+
+    free(stack);
 }
+
 
 //stop!
