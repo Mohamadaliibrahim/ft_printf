@@ -1,52 +1,58 @@
 #include "push_swap.h"
 
-int	find_min_value(t_stack *a)
+int find_min_value(t_stack *a)
 {
-	int	min;
+	int min;
+	t_node *current;
 
-	min = a->data;
-	while (a)
+	if (!a || !a->top)
+		return (INT_MAX); // Return the maximum int value if the stack is empty.
+
+	current = a->top;
+	min = current->value; // Start with the first node's value as the minimum.
+	while (current)
 	{
-		if (a->data < min)
-			min = a->data;
-		a = a->next;
+		if (current->value < min)
+			min = current->value;
+		current = current->next;
 	}
 	return (min);
 }
 
-int	find_index(t_stack *a, int value)
+t_node *find_index(t_stack *a, int value)
 {
-	int	index;
+    t_node *current = a->top;
 
-	index = 0;
-	while (a)
-	{
-		if (a->data == value)
-			return (index);
-		index++;
-		a = a->next;
-	}
-	return (-1);
+    while (current)
+    {
+        if (current->value == value)
+            return current;
+        current = current->next;
+    }
+    return NULL;
 }
 
-void	sort_four(t_stack **a, t_stack **b)
+void sort_four(t_stack **a, t_stack **b)
 {
-	int		min;
-	int		index;
+	int min;
+	t_node *min_node;
 
-	if (!a || !*a || !(*a)->next || stack_is_sorted(*a))
+	if (!a || !*a || !(*a)->top || stack_is_sorted(*a))
 		return ;
+
 	min = find_min_value(*a);
-	index = find_index(*a, min);
-	if (index == 1)
+	min_node = find_index(*a, min);
+
+	if (min_node == (*a)->top->next) // If min is in position 1
 		ra(a);
-	else if (index == 2)
+	else if (min_node == (*a)->top->next->next) // If min is in position 2
 	{
 		ra(a);
 		ra(a);
 	}
-	else if (index == 3)
+	else if (min_node == (*a)->top->prev) // If min is in position 3
 		rra(a);
+
 	pb(a, b);
 	sort_three(a);
 	pa(a, b);

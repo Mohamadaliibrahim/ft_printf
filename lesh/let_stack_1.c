@@ -1,49 +1,43 @@
 #include "push_swap.h"
 
+t_node	*create_node(int value)
+{
+	t_node	*new_node;
+
+	new_node = (t_node *)malloc(sizeof(t_node));
+	if (!new_node)
+		return (NULL);
+	new_node->value = value;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	return (new_node);
+}
+
 t_stack	*create_stack_from_args(int ac, char **av)
 {
 	t_stack	*stack;
-	t_stack	*new_node;
+	t_node	*new_node;
 	int		i;
 
-	stack = NULL;
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->top = NULL;
+	stack->size = 0;
 	i = ac - 1;
 	while (i >= 1)
 	{
-		new_node = (t_stack *)malloc(sizeof(t_stack));
+		new_node = (t_node *)malloc(sizeof(t_node));
 		if (!new_node)
 			return (NULL);
-		new_node->data = atoi(av[i]);
-		new_node->next = stack;
-		stack = new_node;
+		new_node->value = atoi(av[i]);
+		new_node->next = stack->top;
+		if (stack->top)
+			stack->top->prev = new_node;
+		stack->top = new_node;
+		stack->size++;
 		i--;
 	}
 	return (stack);
 }
 
-void	lets_free(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free (str);
-}
-
-int	min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-int	abs(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}

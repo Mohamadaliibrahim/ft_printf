@@ -1,40 +1,28 @@
 #include "push_swap.h"
 
-int	pop(t_stack **stack)
-{
-	t_stack	*temp;
-	int		data;
-
-	if (!stack || !*stack)
-		return (0);
-
-	temp = *stack;
-	data = temp->data;
-	*stack = (*stack)->next;
-	free(temp);
-	return (data);
-}
-
-
 static	void	push(t_stack **src, t_stack **dst)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 
-	if ((*src) == NULL)
+	if ((*src) == NULL || (*src)->top == NULL)
 		return ;
-	tmp = (*src)->next;
-	(*src)->next = *dst;
-	(*dst) = (*src);
-	*src = tmp;
+
+	tmp = (*src)->top->next;
+	(*src)->top->next = (*dst)->top;
+	(*dst)->top = (*src)->top;
+	(*src)->top = tmp;
 }
 
 void	pa(t_stack **a, t_stack **b)
 {
 	push(b, a);
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack **a, t_stack **b)
 {
 	push(a, b);
+	ft_printf("pb\n");
 }
+
 //stop!

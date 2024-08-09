@@ -2,15 +2,19 @@
 
 static void	swap(t_stack **stack)
 {
-	int	z;
-	int	y;
+	t_node	*first;
+	t_node	*second;
+	int		temp_value;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->top == NULL || (*stack)->top->next == NULL)
 		return ;
-	z = (*stack)->data;
-	y = (*stack)->next->data;
-	(*stack)->data = y;
-	(*stack)->next->data = z;
+
+	first = (*stack)->top;
+	second = first->next;
+
+	temp_value = first->value;
+	first->value = second->value;
+	second->value = temp_value;
 }
 
 void	sa(t_stack **a)
@@ -31,4 +35,5 @@ void	ss(t_stack **a, t_stack **b)
 	swap(b);
 	ft_printf("ss\n");
 }
+
 //stop!
