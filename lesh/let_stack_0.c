@@ -1,14 +1,12 @@
 #include "push_swap.h"
 
-#include "push_swap.h"
-
 int	stack_len(t_stack *a)
 {
-	t_node	*current;
+	t_stack	*current;  // Changed t_node to t_stack
 	int		i;
 
 	i = 0;
-	current = a->top;
+	current = a;  // No 'top', start directly from 'a'
 	while (current)
 	{
 		i++;
@@ -19,19 +17,19 @@ int	stack_len(t_stack *a)
 
 int	stack_is_sorted(t_stack *a)
 {
-	t_node	*current;
+	t_stack	*current;  // Changed t_node to t_stack
 	int		z;
 
-	if (a == NULL || a->top == NULL)
+	if (a == NULL)
 		return (1);
-	current = a->top;
-	z = current->value;
+	current = a;  // No 'top', start directly from 'a'
+	z = current->data;  // Use 'data' instead of 'value'
 	current = current->next;
 	while (current)
 	{
-		if (z > current->value)
+		if (z > current->data)  // Use 'data' instead of 'value'
 			return (0);
-		z = current->value;
+		z = current->data;  // Use 'data' instead of 'value'
 		current = current->next;
 	}
 	return (1);
@@ -39,23 +37,23 @@ int	stack_is_sorted(t_stack *a)
 
 void	sort_three_1(t_stack **a)
 {
-	t_node	*x;
-	t_node	*y;
-	t_node	*z;
+	t_stack	*x;  // Changed t_node to t_stack
+	t_stack	*y;
+	t_stack	*z;
 
-	x = (*a)->top;
+	x = *a;  // No 'top', start directly from '*a'
 	y = x->next;
 	z = y->next;
-	if (x->value > y->value && y->value < z->value && x->value > z->value)
+	if (x->data > y->data && y->data < z->data && x->data > z->data)
 	{
 		ra(a);
 	}
-	else if (x->value < y->value && y->value > z->value && x->value < z->value)
+	else if (x->data < y->data && y->data > z->data && x->data < z->data)
 	{
 		sa(a);
 		ra(a);
 	}
-	else if (x->value < y->value && y->value > z->value && x->value > z->value)
+	else if (x->data < y->data && y->data > z->data && x->data > z->data)
 	{
 		rra(a);
 	}
@@ -63,20 +61,20 @@ void	sort_three_1(t_stack **a)
 
 void	sort_three(t_stack **a)
 {
-	t_node	*x;
-	t_node	*y;
-	t_node	*z;
+	t_stack	*x;  // Changed t_node to t_stack
+	t_stack	*y;
+	t_stack	*z;
 
-	if (!a || !*a || !(*a)->top || !(*a)->top->next || stack_is_sorted(*a))
-		return ;
-	x = (*a)->top;
+	if (!a || !*a || stack_is_sorted(*a))
+		return;
+	x = *a;
 	y = x->next;
 	z = y->next;
-	if (x->value > y->value && y->value < z->value && x->value < z->value)
+	if (x->data > y->data && y->data < z->data && x->data < z->data)
 	{
 		sa(a);
 	}
-	else if (x->value > y->value && y->value > z->value && x->value > z->value)
+	else if (x->data > y->data && y->data > z->data && x->data > z->data)
 	{
 		sa(a);
 		rra(a);
@@ -87,20 +85,14 @@ void	sort_three(t_stack **a)
 
 void	free_stack(t_stack *stack)
 {
-    t_node	*temp;
+	t_stack	*temp;  // Changed t_node to t_stack
 
-    if (stack == NULL) // Check if stack is NULL
-        return;
-
-    while (stack->top)
-    {
-        temp = stack->top;
-        stack->top = stack->top->next;
-        free(temp);
-    }
-
-    free(stack);
+	if (stack == NULL)
+		return;
+	while (stack)
+	{
+		temp = stack;
+		stack = stack->next;
+		free(temp);
+	}
 }
-
-
-//stop!

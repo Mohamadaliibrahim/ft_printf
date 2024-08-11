@@ -8,69 +8,31 @@
 # include <string.h>
 # include "ft_printf/ft_printf.h"
 
-typedef struct s_cost
-{
-	int min_cost;    // The current minimum cost found
-	int best_a;      // The best position in stack A
-	int best_b;      // The best position in stack B
-	int pos_a;       // The current position in stack A being evaluated
-}	t_cost;
-
-
-typedef struct s_node
-{
-	int					value;
-	int					index;
-	int					cost;
-	struct s_node		*target_node;
-	struct s_node		*next;
-	struct s_node		*prev;
-}	t_node;
 
 typedef struct s_stack
 {
-	t_node				*top;
-	int					size;
+	int					data;
+	int					cost;
+	struct s_stack		*target;
+	struct s_stack		*next;
+	struct s_stack		*prev;
 }	t_stack;
 
-typedef struct s_calc_args
-{
-	t_stack *a;   // Pointer to stack A
-	t_stack *b;   // Pointer to stack B
-	int target;   // The target value in stack B corresponding to a value in stack A
-	int pos_a;    // The current position in stack A being evaluated
-}	t_calc_args;
 
 		/*Algorithm*/
 
-void	lets_continue(t_stack *a, t_stack *b);
 void	sort_three_1(t_stack **a);
 void	sort_three(t_stack **a);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
 void	sort_five1(t_stack **a, t_stack **b);
 void	sort_five2(t_stack **a, t_stack **b);
-void	min_cost(t_stack *a, t_stack *b);
-void	min_cost_b_to_a(t_stack *a, t_stack *b);
-void	min_cost1(t_stack *a, t_stack *b, t_cost *cost);
-void	min_cost2(t_stack *a, t_stack *b, t_node *current_a, t_cost	*cost);
-void	min_cost3(t_calc_args *args, int *cost_a, int *cost_b);
-void	min_cost4(t_stack *a, int best_position_a);
-void	min_cost5(t_stack *b, int best_position_b);
-int		find_median_index(int size);
-void	push_with_min_cost(t_stack *a, t_stack *b);
-void	push_with_min_cost1(t_stack *a, t_cost *cost);
-void	push_with_min_cost2(t_stack *a, t_cost *cost);
-void	push_with_min_cost3(t_stack *b, t_cost *cost);
-void	sort_b_to_a(t_stack *a, t_stack *b);
-void	move_min_to_top(t_stack *a);
-void	assign_targets(t_stack *a, t_stack *b);
-t_node	*find_index(t_stack *a, int value);
-int		a_to_b_find_target(t_stack *b, int value);
-int		get_cost(t_stack *x, int position);
-
+int		find_index1(t_stack *stack, int value);
+int		find_min_value(t_stack *stack);
 
 		/*Error_check*/
+int		median_line(t_stack *stack);
+
 
 void	ft_error(char *msg);
 int		ft_isdigit(int c);
@@ -103,6 +65,7 @@ void	rrb(t_stack **b);
 
 		/*Utils*/
 
+
 int		min(int a, int b);
 int		abs(int n);
 void	ft_check_args(int ac, char **av);
@@ -114,9 +77,25 @@ void	ft_error(char *msg);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_isdigit(int c);
 
-int		find_min_value(t_stack *a);
+int		find_median_line(t_stack *stack);
 t_stack	*init_stack(void);
 
+//chat
+void	push_value_to_target_position(int value_in_b, t_stack **a, t_stack **b);
+void	push_and_sort_two(t_stack **a, t_stack **b);
+int		calculate_cost(t_stack *a, t_stack *b, int target);
+int		find_target(t_stack *b, int value);
+void	push_min_cost(t_stack **a, t_stack **b);
+void	sort_five(t_stack **a, t_stack **b);
+void	assign_targets(t_stack *a, t_stack *b);
+void	sort_b_to_a(t_stack *a, t_stack *b);
+void	move_value_to_top(t_stack **stack, int value);
 
+void	push_to_target(t_stack **a, t_stack **b);
+int		find_target_index(t_stack *a, int b_data);
+int 	find_min_index(t_stack *a);
 
+int		stack_is_empty(t_stack *stack);
+int		find_max_value(t_stack *stack);
+int		find_position(t_stack *stack, int value);
 #endif

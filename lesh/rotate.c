@@ -2,43 +2,41 @@
 
 static void	rotate(t_stack **stack)
 {
-	t_node	*temp;
-	t_node	*first;
-	int		first_value;
+    t_stack	*first;
+    t_stack	*last;
 
-	if (!stack || !*stack || !(*stack)->top || !(*stack)->top->next)
-		return ;
+    if (!stack || !*stack || !(*stack)->next)
+        return;
 
-	first = (*stack)->top;
-	first_value = first->value;
-	temp = (*stack)->top;
+    first = *stack;
+    last = *stack;
 
-	while (temp->next)
-	{
-		temp->value = temp->next->value;
-		temp = temp->next;
-	}
-	temp->value = first_value;
+    while (last->next)
+        last = last->next;
+
+    *stack = first->next;
+    (*stack)->prev = NULL;
+
+    first->next = NULL;
+    first->prev = last;
+    last->next = first;
 }
 
 void	ra(t_stack **a)
 {
-	rotate(a);
-	ft_printf("ra\n");
+    rotate(a);
+    ft_printf("ra\n");
 }
 
 void	rb(t_stack **b)
 {
-	rotate(b);
-	ft_printf("rb\n");
+    rotate(b);
+    ft_printf("rb\n");
 }
 
 void	rr(t_stack **a, t_stack **b)
 {
-	rotate(a);
-	rotate(b);
-	ft_printf("rr\n");
+    rotate(a);
+    rotate(b);
+    ft_printf("rr\n");
 }
-
-
-//stop!

@@ -2,36 +2,24 @@
 
 static void push(t_stack **src, t_stack **dst)
 {
-    t_node *tmp;
+    t_stack *tmp;
 
-    if ((*src) == NULL || (*src)->top == NULL)
-        return ;
+    if (*src == NULL)
+        return;
 
-    tmp = (*src)->top->next;
+    tmp = *src;
+    *src = (*src)->next;
 
-    if (*dst == NULL) // Initialize dst stack if it's NULL
-    {
-        *dst = (t_stack *)malloc(sizeof(t_stack));
-        if (*dst == NULL)
-            return ; // Handle malloc failure
-        (*dst)->top = NULL;
-        (*dst)->size = 0;
-    }
+    if (*src != NULL)
+        (*src)->prev = NULL;
 
-    (*src)->top->next = (*dst)->top;
-    if ((*dst)->top != NULL)
-        (*dst)->top->prev = (*src)->top;
+    tmp->next = *dst;
 
-    (*dst)->top = (*src)->top;
-    (*src)->top = tmp;
+    if (*dst != NULL)
+        (*dst)->prev = tmp;
 
-    if ((*src)->top != NULL)
-        (*src)->top->prev = NULL;
-
-    (*dst)->size++;
-    (*src)->size--;
+    *dst = tmp;
 }
-
 
 void	pa(t_stack **a, t_stack **b)
 {
@@ -44,5 +32,3 @@ void	pb(t_stack **a, t_stack **b)
 	push(a, b);
 	ft_printf("pb\n");
 }
-
-//stop!
