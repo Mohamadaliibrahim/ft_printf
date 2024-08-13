@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+#include "push_swap.h"
+
 int	find_min_value(t_stack *a)
 {
 	int		min;
@@ -18,3 +20,5 @@ int	find_min_value(t_stack *a)
 	}
 	return (min);
 }
+
+

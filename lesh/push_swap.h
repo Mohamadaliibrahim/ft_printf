@@ -10,11 +10,11 @@
 
 typedef struct s_stack
 {
-    int					data;
-    int					cost;
-    struct s_stack		*target;
-    struct s_stack		*next;
-    struct s_stack		*prev;
+	int					data;
+	int					cost;
+	struct s_stack		*target;
+	struct s_stack		*next;
+	struct s_stack		*prev;
 }	t_stack;
 
 /* Algorithm */
@@ -90,10 +90,13 @@ void	move_value_to_top(t_stack **stack, int value);
 
 void	push_to_target(t_stack **a, t_stack **b);
 int		find_target_index(t_stack *a, int b_data);
-int 	find_min_index(t_stack *a);
+int		find_min_index(t_stack *a);
 
 int		stack_is_empty(t_stack *stack);
 int		find_max_value(t_stack *stack);
 int		find_position(t_stack *stack, int value);
+int		find_min_index(t_stack *a);
 
+int		is_descending(t_stack *stack);
+void	lower(t_stack **b);
 #endif

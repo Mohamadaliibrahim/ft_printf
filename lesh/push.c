@@ -1,24 +1,19 @@
 #include "push_swap.h"
 
-static void push(t_stack **src, t_stack **dst)
+static	void	push(t_stack **src, t_stack **dst)
 {
-    t_stack *tmp;
+	t_stack	*tmp;
 
-    if (*src == NULL)
-        return;
-
-    tmp = *src;
-    *src = (*src)->next;
-
-    if (*src != NULL)
-        (*src)->prev = NULL;
-
-    tmp->next = *dst;
-
-    if (*dst != NULL)
-        (*dst)->prev = tmp;
-
-    *dst = tmp;
+	if (*src == NULL)
+		return ;
+	tmp = *src;
+	*src = (*src)->next;
+	if (*src != NULL)
+		(*src)->prev = NULL;
+	tmp->next = *dst;
+	if (*dst != NULL)
+		(*dst)->prev = tmp;
+	*dst = tmp;
 }
 
 void	pa(t_stack **a, t_stack **b)

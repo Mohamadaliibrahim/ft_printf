@@ -1,27 +1,5 @@
 #include "push_swap.h"
 
-int	a_to_b_find_target(t_stack *b, int value)
-{
-	t_stack	*current;
-	int		target;
-	int		max;
-
-	current = b;
-	target = INT_MIN;
-	max = INT_MIN;
-	while (current)
-	{
-		if (current->data < value && current->data > target)
-			target = current->data;
-		if (current->data > max)
-			max = current->data;
-		current = current->next;
-	}
-	if (target == INT_MIN)
-		return (max);
-	return (target);
-}
-//////////////////////////////////////
 void	perform_rotations(t_stack **a, int target_index, int median_line)
 {
 	if (target_index <= median_line)
@@ -36,12 +14,12 @@ void	perform_rotations(t_stack **a, int target_index, int median_line)
 	}
 }
 
-int find_target_index(t_stack *a, int b_data)
+int	find_target_index(t_stack *a, int b_data)
 {
-	t_stack *current;
-	int target_index;
-	int closest_max;
-	int i;
+	t_stack	*current;
+	int		target_index;
+	int		closest_max;
+	int		i;
 
 	current = a;
 	target_index = 0;
@@ -62,35 +40,38 @@ int find_target_index(t_stack *a, int b_data)
 	return (target_index);
 }
 
-int find_min_index(t_stack *a)
+int	find_min_index(t_stack *a)
 {
-	t_stack *current;
-	int min;
-	int min_index;
-	int i;
+	int		min;
+	int		index;
+	int		min_index;
+	t_stack	*current;
+
+	if (!a)
+		return (-1);
 
 	current = a;
 	min = current->data;
 	min_index = 0;
-	i = 0;
+	index = 0;
 	while (current)
 	{
 		if (current->data < min)
 		{
 			min = current->data;
-			min_index = i;
+			min_index = index;
 		}
 		current = current->next;
-		i++;
+		index++;
 	}
 	return (min_index);
 }
 
-void push_to_target(t_stack **a, t_stack **b)
+void	push_to_target(t_stack **a, t_stack **b)
 {
-	int target_index;
-	int median_line;
-	int b_data;
+	int	target_index;
+	int	median_line;
+	int	b_data;
 
 	while (*b)
 	{
