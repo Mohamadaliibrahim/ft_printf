@@ -21,7 +21,7 @@ int	a_to_b_find_target(t_stack *b, int value)
 		return (max);
 	return (target);
 }
-
+//////////////////////////////////////
 void	perform_rotations(t_stack **a, int target_index, int median_line)
 {
 	if (target_index <= median_line)
@@ -35,8 +35,6 @@ void	perform_rotations(t_stack **a, int target_index, int median_line)
 			rra(a);
 	}
 }
-
-#include "push_swap.h"
 
 int find_target_index(t_stack *a, int b_data)
 {

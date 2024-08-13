@@ -40,16 +40,40 @@ void	stack_3_and_b(t_stack **a, t_stack **b)
 }
 
 
-void push_swap_it(t_stack **a, t_stack **b)
+void do_it(t_stack **a, t_stack **b)
 {
     pb(a, b);
     if (stack_len(*a) == 3)
+	{
         stack_3_and_b(a, b);
+		//finish_program(*a, *b);
+	}
     pb(a, b);
     if (stack_len(*a) == 3)
+	{
         stack_3_and_b(a, b);
-    else
-		ft_printf("hello");
+		//finish_program(*a, *b);
+	}
+	//else
+	//{
+	//	ft_printf("hello\n");
+	//	finish_program(*a, *b);
+	//}
+}
+
+void	push_swap_it(t_stack **a,t_stack **b)
+{
+	if (stack_len(*a) == 4 || stack_len(*a) == 5)
+		do_it(a, b);
+	else
+	{
+		while (stack_len(*a) > 3)
+		{
+			push_min_cost(a, b);
+		}
+		sort_three(a);
+		stack_3_and_b(a, b);
+	}
 }
 
 int main(int ac, char *av[])
