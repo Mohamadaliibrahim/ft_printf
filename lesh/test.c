@@ -100,7 +100,6 @@ void		assign_targets(t_stack *a, t_stack *b);
 void		move_min_to_top(t_stack *a);
 void		push_with_min_cost(t_stack *a, t_stack *b);
 
-int			find_median_index(int size);
 int			stack_is_sorted(t_stack *a);
 int			stack_len(t_stack *a);
 int			get_cost(t_stack *x, int position);
@@ -120,7 +119,6 @@ void		rb(t_stack **b);
 void		rra(t_stack **a);
 void		rrb(t_stack **b);
 
-void		ft_error(char *msg);
 int			ft_isdigit(int c);
 char		*ft_substr(const char *s, unsigned int start, size_t len);
 int			ft_strlen(const char *str);

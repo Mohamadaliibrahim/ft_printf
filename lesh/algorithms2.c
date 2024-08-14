@@ -19,3 +19,5 @@ int	stack_is_empty(t_stack *stack)
 {
 	return (stack == NULL);
 }
+
+

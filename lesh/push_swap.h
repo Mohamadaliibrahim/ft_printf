@@ -29,12 +29,10 @@ int		find_min_value(t_stack *stack);
 t_stack	*find_target(t_stack *b, int value);
 int		calculate_cost(t_stack *a, t_stack *b, t_stack *target);
 void	push_min_cost(t_stack **a, t_stack **b);
-void	move_value_to_top(t_stack **stack, int value);
 
 /* Error_check */
 int		median_line(t_stack *stack);
 
-void	ft_error(char *msg);
 int		ft_isdigit(int c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 int		ft_strlen(const char *str);
@@ -70,7 +68,6 @@ void	ft_validate_args(char **av, int flag, int i);
 int		ft_isnum(char *num);
 long	ft_atoi(const char *nptr);
 int		ft_contains(int num, char **av, int i);
-void	ft_error(char *msg);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_isdigit(int c);
 
@@ -86,15 +83,14 @@ void	push_min_cost(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
 void	assign_targets(t_stack *a, t_stack *b);
 void	sort_b_to_a(t_stack *a, t_stack *b);
-void	move_value_to_top(t_stack **stack, int value);
+void	move_value_to_top(t_stack **stack, int value, char stack_name);
 
 void	push_to_target(t_stack **a, t_stack **b);
 int		find_target_index(t_stack *a, int b_data);
 int		find_min_index(t_stack *a);
-
+void	ft_error(char *msg);
 int		stack_is_empty(t_stack *stack);
 int		find_max_value(t_stack *stack);
-int		find_position(t_stack *stack, int value);
 int		find_min_index(t_stack *a);
 
 int		is_descending(t_stack *stack);

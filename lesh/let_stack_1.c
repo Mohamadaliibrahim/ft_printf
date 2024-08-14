@@ -1,13 +1,33 @@
 #include "push_swap.h"
 
+int	find_min_value(t_stack *a)
+{
+	int		min;
+	t_stack	*current;
+
+	if (!a)
+		return (INT_MAX);
+
+	current = a;
+	min = current->data;
+	while (current)
+	{
+		if (current->data < min)
+			min = current->data;
+		current = current->next;
+	}
+	return (min);
+}
+
+
 t_stack	*create_node(int value)
 {
 	t_stack	*new_node;
 
-	new_node = (t_stack *)malloc(sizeof(t_stack)); // Use t_stack instead of t_node
+	new_node = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_node)
 		return (NULL);
-	new_node->data = value;  // Use 'data' instead of 'value'
+	new_node->data = value;
 	new_node->target = NULL;
 	new_node->next = NULL;
 	new_node->prev = NULL;

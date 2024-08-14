@@ -29,6 +29,7 @@ int	stack_is_sorted(t_stack *a)
 	{
 		if (z > current->data)  // Use 'data' instead of 'value'
 			return (0);
+		//printf("current: %d prev: %d\n",current->data, z);
 		z = current->data;  // Use 'data' instead of 'value'
 		current = current->next;
 	}

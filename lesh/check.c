@@ -22,6 +22,8 @@ long	ft_atoi(const char *nptr)
 	i = 0;
 	neg = 0;
 	ans = 0;
+	if((nptr[i] == '-' || nptr[i] == '+') && nptr[i + 1] == '\0')
+		ft_error("Error");
 	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
 	if (nptr[i] == '+' || nptr[i] == '-')
@@ -41,13 +43,12 @@ long	ft_atoi(const char *nptr)
 	return (ans);
 }
 
-
 int	ft_isnum(char *num)
 {
 	int	i;
 
 	i = 0;
-	if (num[0] == '-')
+	if (num[0] == '-' || num[0] == '+')
 		i++;
 	while (num[i])
 	{
@@ -103,6 +104,13 @@ void	ft_check_args(int ac, char **av)
 	else
 		i = 1;
 	ft_validate_args(av, flag, i);
+	//i = 1;
+	//while (i <= ac)
+	//{
+	//	if (av[i][0] == '-' && av[i][1] == '\0')
+	//		ft_error("Error");
+	//	i++;
+	//}
 	if (ac == 2)
 		free_it(av);
 }

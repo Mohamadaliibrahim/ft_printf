@@ -24,7 +24,6 @@ void	rotate_to_min(t_stack **a)
 			ra(a);
 }
 
-
 void	stack_3_and_b(t_stack **a, t_stack **b)
 {
 	if (stack_len(*a) == 3 && !stack_is_sorted(*a))
@@ -77,6 +76,10 @@ int	main(int ac, char *av[])
 	{
 		push_swap_it(&a, &b);
 	}
+	// if (stack_is_sorted(a))
+	// 	ft_printf("great");
+	// else
+	// 	ft_printf("NO");
 	free_stack(a);
 	free_stack(b);
 	return (0);
