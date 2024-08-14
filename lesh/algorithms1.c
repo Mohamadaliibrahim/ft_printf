@@ -76,6 +76,7 @@ void move_value_to_top(t_stack **stack, int value, char stack_name)
     int index = find_index1(*stack, value);
     int len = stack_len(*stack);
     
+    printf("index %d\n", index);
     if (index <= len / 2) {
         while ((*stack)->data != value) {
             if (stack_name == 'a') {
@@ -94,6 +95,11 @@ void move_value_to_top(t_stack **stack, int value, char stack_name)
         }
     }
 }
+
+// void check_ra(t_stack **stack, int median)
+// {
+//     if ()
+// }
 
 // Function to push from stack A to stack B considering the minimum cost
 void push_min_cost(t_stack **a, t_stack **b) {
@@ -119,7 +125,7 @@ void push_min_cost(t_stack **a, t_stack **b) {
             
             current_a = current_a->next;
         }
-        
+        ft_printf("minimum cost number : %d and its cost: %d\n", target->data, min_cost);
         // Move the element in A and its target in B to the top of their stacks
         move_value_to_top(a, min_cost_target->data, 'a');
         move_value_to_top(b, find_target(*b, min_cost_target->data)->data, 'b');

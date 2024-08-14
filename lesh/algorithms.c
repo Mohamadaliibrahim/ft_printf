@@ -5,7 +5,10 @@ void	perform_rotations(t_stack **a, int target_index, int median_line)
 	if (target_index <= median_line)
 	{
 		while (target_index-- > 0)
+		{
+			printf("here1\n");
 			ra(a);
+		}
 	}
 	else
 	{

@@ -1,0 +1,19 @@
+{
+	"files.associations": {
+		"*.ejs": "html",
+		"push_swap.h": "c",
+		"algorithm": "c",
+		"atomic": "c",
+		"charconv": "c",
+		"chrono": "c",
+		"format": "c",
+		"istream": "c",
+		"locale": "c",
+		"xlocale": "c",
+		"xlocbuf": "c",
+		"xlocmon": "c",
+		"xlocnum": "c",
+		"xloctime": "c",
+		"xstring": "c"
+	}
+}

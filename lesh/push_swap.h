@@ -29,6 +29,7 @@ int		find_min_value(t_stack *stack);
 t_stack	*find_target(t_stack *b, int value);
 int		calculate_cost(t_stack *a, t_stack *b, t_stack *target);
 void	push_min_cost(t_stack **a, t_stack **b);
+void	perform_rotations(t_stack **a, int target_index, int median_line);
 
 /* Error_check */
 int		median_line(t_stack *stack);

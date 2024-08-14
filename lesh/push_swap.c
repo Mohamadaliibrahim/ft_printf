@@ -20,8 +20,13 @@ void	rotate_to_min(t_stack **a)
 		while (min_index++ < stack_size)
 			rra(a);
 	else
+	{
 		while (min_index-- > 0)
+		{
 			ra(a);
+			printf("here3\n");
+		}
+	}
 }
 
 void	stack_3_and_b(t_stack **a, t_stack **b)
