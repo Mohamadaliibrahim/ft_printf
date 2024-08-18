@@ -28,11 +28,12 @@ t_stack	*create_node(int value)
 	if (!new_node)
 		return (NULL);
 	new_node->data = value;
-	new_node->target = NULL;
+	new_node->target_node = NULL;  // Corrected line
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
 }
+
 
 
 t_stack	*create_stack_from_args(int ac, char **av)

@@ -1,87 +1,101 @@
 #include "push_swap.h"
 
-void	perform_rotations(t_stack **a, int target_index, int median_line)
+t_stack *push_swap(t_stack **stack_a, t_stack **stack_b, int size_a)
 {
-	if (target_index <= median_line)
+    if (size_a-- > 3 && !stack_is_sorted(*stack_a))
+        pb(stack_a, stack_b);
+    if (size_a-- > 3 && !stack_is_sorted(*stack_a))
+        pb(stack_a, stack_b);
+    while (size_a-- > 3 && !stack_is_sorted(*stack_a))
+    {
+        init_node_a(stack_a, stack_b);
+        move_a_to_b(stack_a, stack_b);
+    }
+    sort_three(stack_a);
+    while (*stack_b)
+    {
+        init_node_b(stack_a, stack_b);
+        move_b_to_a(stack_a, stack_b);
+    }
+    current_index(*stack_a);
+    while ((*stack_a)->data != find_smallest(*stack_a)->data)
+    {
+        if (find_smallest(*stack_a)->above_median)
+            ra(stack_a);
+        else
+            rra(stack_a);
+    }
+    return (*stack_a);
+}
+
+
+t_stack	*get_cheapest(t_stack *stack)
+{
+	t_stack	*s;
+
+	s = stack;
+	while (s)
 	{
-		while (target_index-- > 0)
-		{
-			printf("here1\n");
-			ra(a);
-		}
+		if (s->cheapest)
+			return (s);
+		s = s->next;
 	}
-	else
+	return (stack);
+}
+
+void	bring_on_top(t_stack **stack, t_stack *desired_node, char stack_name)
+{
+	while (*stack != desired_node)
 	{
-		while (target_index++ < stack_len(*a))
-			rra(a);
+		if (desired_node->above_median)
+		{
+			if (stack_name == 'a')
+				ra(stack);
+			else
+				rb(stack);
+		}
+		else
+		{
+			if (stack_name == 'a')
+				rra(stack);
+			else
+				rrb(stack);
+		}
 	}
 }
 
-int	find_target_index(t_stack *a, int b_data)
-{
-	t_stack	*current;
-	int		target_index;
-	int		closest_max;
-	int		i;
 
-	current = a;
-	target_index = 0;
-	closest_max = INT_MAX;
-	i = 0;
-	while (current)
+
+void	move_a_to_b(t_stack **a, t_stack **b)
+{
+	t_stack	*cheapest_node;
+
+	cheapest_node = get_cheapest(*a);
+	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
 	{
-		if (current->data > b_data && current->data < closest_max)
-		{
-			closest_max = current->data;
-			target_index = i;
-		}
-		current = current->next;
-		i++;
+		while (*b != cheapest_node->target_node && *a != cheapest_node)
+			rr(a, b);
+		current_index(*a);
+		current_index(*b);
 	}
-	if (closest_max == INT_MAX)
-		return (find_min_index(a));
-	return (target_index);
+	else if (!cheapest_node->above_median
+		&& !cheapest_node->target_node->above_median)
+	{
+		while (*b != cheapest_node->target_node && *a != cheapest_node)
+			rrr(a, b);
+		current_index(*a);
+		current_index(*b);
+	}
+	bring_on_top(a, cheapest_node, 'a');
+	bring_on_top(b, cheapest_node->target_node, 'b');
+	pb(a, b);
 }
 
-int	find_min_index(t_stack *a)
+void	init_node_a(t_stack **a, t_stack **b)
 {
-	int		min;
-	int		index;
-	int		min_index;
-	t_stack	*current;
-
-	if (!a)
-		return (-1);
-
-	current = a;
-	min = current->data;
-	min_index = 0;
-	index = 0;
-	while (current)
-	{
-		if (current->data < min)
-		{
-			min = current->data;
-			min_index = index;
-		}
-		current = current->next;
-		index++;
-	}
-	return (min_index);
-}
-
-void	push_to_target(t_stack **a, t_stack **b)
-{
-	int	target_index;
-	int	median_line;
-	int	b_data;
-
-	while (*b)
-	{
-		b_data = (*b)->data;
-		target_index = find_target_index(*a, b_data);
-		median_line = stack_len(*a) / 2;
-		perform_rotations(a, target_index, median_line);
-		pa(a, b);
-	}
+	current_index(*a);
+	current_index(*b);
+	*a = set_target_nodes_a(*a, *b);
+	*a = cost_analyst(*a, *b);
+	*a = set_cheapest(*a);
 }
