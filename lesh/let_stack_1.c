@@ -20,20 +20,25 @@ int	find_min_value(t_stack *a)
 }
 
 
-t_stack	*create_node(int value)
+t_stack *create_node(int value)
 {
-	t_stack	*new_node;
+    t_stack *new_node;
 
-	new_node = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_node)
-		return (NULL);
-	new_node->data = value;
-	new_node->target_node = NULL;  // Corrected line
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	return (new_node);
+    new_node = (t_stack *)malloc(sizeof(t_stack)); // Allocate memory for a new node
+    if (!new_node)
+        return (NULL); // Return NULL if memory allocation fails
+    
+    new_node->data = value;          // Set the data field to the provided value
+    new_node->index = 0;             // Initialize index to 0 or set as needed later
+    new_node->cost = 0;              // Initialize cost to 0 or set as needed later
+    new_node->cheapest = 0;          // Initialize cheapest to 0 or false
+    new_node->above_median = false;  // Initialize above_median to false
+    new_node->target_node = NULL;    // Initialize target_node to NULL
+    new_node->next = NULL;           // Initialize next pointer to NULL
+    new_node->prev = NULL;           // Initialize prev pointer to NULL
+
+    return (new_node); // Return the newly created node
 }
-
 
 
 t_stack	*create_stack_from_args(int ac, char **av)
