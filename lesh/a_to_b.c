@@ -1,79 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithms.c                                       :+:      :+:    :+:   */
+/*   a_to_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 10:16:57 by mohamibr          #+#    #+#             */
-/*   Updated: 2024/08/19 10:17:06 by mohamibr         ###   ########.fr       */
+/*   Created: 2024/08/19 10:20:54 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/08/19 10:21:10 by mohamibr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_stack	*push_swap(t_stack **stack_a, t_stack **stack_b, int size_a)
-{
-	if (size_a-- > 3 && !stack_is_sorted(*stack_a))
-		pb(stack_a, stack_b);
-	if (size_a-- > 3 && !stack_is_sorted(*stack_a))
-		pb(stack_a, stack_b);
-	while (size_a-- > 3 && !stack_is_sorted(*stack_a))
-	{
-		init_node_a(stack_a, stack_b);
-		move_a_to_b(stack_a, stack_b);
-	}
-	sort_three(stack_a);
-	while (*stack_b)
-	{
-		init_node_b(stack_a, stack_b);
-		move_b_to_a(stack_a, stack_b);
-	}
-	current_index(*stack_a);
-	while ((*stack_a)->data != find_smallest(*stack_a)->data)
-	{
-		if (find_smallest(*stack_a)->above_median)
-			ra(stack_a);
-		else
-			rra(stack_a);
-	}
-	return (*stack_a);
-}
-
-t_stack	*get_cheapest(t_stack *stack)
-{
-	t_stack	*s;
-
-	s = stack;
-	while (s)
-	{
-		if (s->cheapest)
-			return (s);
-		s = s->next;
-	}
-	return (stack);
-}
-
-void	bring_on_top(t_stack **stack, t_stack *desired_node, char stack_name)
-{
-	while (*stack != desired_node)
-	{
-		if (desired_node->above_median)
-		{
-			if (stack_name == 'a')
-				ra(stack);
-			else
-				rb(stack);
-		}
-		else
-		{
-			if (stack_name == 'a')
-				rra(stack);
-			else
-				rrb(stack);
-		}
-	}
-}
 
 void	move_a_to_b(t_stack **a, t_stack **b)
 {
@@ -108,4 +45,29 @@ void	init_node_a(t_stack **a, t_stack **b)
 	*a = cost_analyst(*a, *b);
 	*a = set_cheapest(*a);
 }
-//stop!
+
+t_stack	*set_target_nodes_a(t_stack *stack_a, t_stack *stack_b)
+{
+	t_stack	*sa;
+	t_stack	*sb;
+	t_stack	*closest;
+
+	sa = stack_a;
+	while (sa)
+	{
+		sb = stack_b;
+		closest = NULL;
+		while (sb)
+		{
+			if (sa->data > sb->data && (!closest || sb->data > closest->data))
+				closest = sb;
+			sb = sb->next;
+		}
+		if (closest)
+			sa->target_node = closest;
+		else
+			sa->target_node = find_max_node(stack_b);
+		sa = sa->next;
+	}
+	return (stack_a);
+}

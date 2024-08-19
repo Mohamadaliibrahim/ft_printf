@@ -73,11 +73,11 @@ void	free_stack(t_stack *stack);
 int		stack_len(t_stack *a);
 void	ft_error(char *msg);
 int		ft_isnum(char *num);
-int		ft_contains(int num, char **av, int i);
+int		ft_contains(int num, char **av, int i, int flag);
 void	ft_check_args(int ac, char **av);
 long	convert_to_long(char *nptr, size_t i, int neg);
-void	check_sign_and_whitespace(char *nptr, size_t *i, int *neg, char **av);
-long	ft_atoi(char *nptr, char **av);
+void	check_sign_and_whitespace(char *nptr, size_t *i, int *neg, int flag, char **av);
+long	ft_atoi(char *nptr, char **av, int flag);
 t_stack	*create_node(int value);
 
 /* Operations */

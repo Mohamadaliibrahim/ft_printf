@@ -1,21 +1,20 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-EXTRAFLAGS = -lreadline -lncurses
 
 SRC =	check.c check1.c ft_split.c ft_strlcpy.c ft_strlen.c\
 		ft_substr.c utils.c utils1.c push_swap.c reverse_rotate.c\
-		rotate.c swap.c push.c ft_strdup.c algorithms.c algorithms1.c\
-		algorithms2.c algorithms3.c utils2.c
+		rotate.c swap.c push.c ft_strdup.c a_to_b.c b_to_a.c\
+		else_it.c utils2.c cheapest_one.c
 
 OBJ = $(SRC:.c=.o)
-EXEC = push_swap
+NAME = push_swap
 LIBDIR = ft_printf
 LIB = $(LIBDIR)/libftprintf.a
 
-all: $(LIB) $(EXEC) 
+all: $(LIB) $(NAME) 
 
-$(EXEC): $(OBJ)
-	$(CC) $(CFLAGS) -o $(EXEC) $(OBJ) $(LIB) $(EXTRAFLAGS)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB) $(EXTRAFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I includes -c $< -o $@
@@ -28,7 +27,7 @@ clean:
 	$(MAKE) -C $(LIBDIR) clean
 
 fclean: clean
-	rm -f $(EXEC) $(LIB)
+	rm -f $(NAME) $(LIB)
 	$(MAKE) -C $(LIBDIR) fclean
 
 re: fclean all

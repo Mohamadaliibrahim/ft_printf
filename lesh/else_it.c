@@ -27,11 +27,6 @@ t_stack	*init_stack(void)
 	return (stack);
 }
 
-int	stack_is_empty(t_stack *stack)
-{
-	return (stack == NULL);
-}
-
 void	finish_program(t_stack *a, t_stack *b)
 {
 	free_stack(a);
@@ -54,6 +49,20 @@ t_stack	*find_smallest(t_stack *stack)
 	}
 	stack = temp;
 	return (min);
+}
+
+t_stack	*find_max_node(t_stack *stack)
+{
+	t_stack	*max_node;
+
+	max_node = stack;
+	while (stack)
+	{
+		if (stack->data > max_node->data)
+			max_node = stack;
+		stack = stack->next;
+	}
+	return (max_node);
 }
 
 void	current_index(t_stack *stack)

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithms1.c                                      :+:      :+:    :+:   */
+/*   cheapest_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,59 +12,20 @@
 
 #include "push_swap.h"
 
-t_stack	*set_target_nodes_b(t_stack *stack_a, t_stack *stack_b)
-{
-	t_stack	*sa;
-	t_stack	*sb;
-	t_stack	*closest;
-
-	sb = stack_b;
-	while (sb)
-	{
-		sa = stack_a;
-		closest = NULL;
-		while (sa)
-		{
-			if ((sa->data > sb->data) && (!closest || sa->data < closest->data))
-				closest = sa;
-			sa = sa->next;
-		}
-		if (closest)
-			sb->target_node = closest;
-		else
-			sb->target_node = find_smallest(stack_a);
-		sb = sb->next;
-	}
-	return (stack_b);
-}
-
-void	move_b_to_a(t_stack **a, t_stack **b)
-{
-	bring_on_top(a, (*b)->target_node, 'a');
-	pa(a, b);
-}
-
-void	init_node_b(t_stack **a, t_stack **b)
-{
-	current_index(*a);
-	current_index(*b);
-	*b = set_target_nodes_b(*a, *b);
-}
-
 t_stack	*set_cheapest(t_stack *stack)
 {
 	t_stack	*s;
-	t_stack	*cost;
+	t_stack	*c;
 
 	s = stack;
-	cost = stack;
+	c = stack;
 	while (s)
 	{
-		if (cost->cost > s->cost)
-			cost = s;
+		if (c->cost > s->cost)
+			c = s;
 		s = s->next;
 	}
-	cost->cheapest = true;
+	c->cheapest = true;
 	return (stack);
 }
 
@@ -90,4 +51,17 @@ t_stack	*cost_analyst(t_stack *stack_a, t_stack *stack_b)
 	}
 	return (stack_a);
 }
-//stop!
+
+t_stack	*get_cheapest(t_stack *stack)
+{
+	t_stack	*s;
+
+	s = stack;
+	while (s)
+	{
+		if (s->cheapest)
+			return (s);
+		s = s->next;
+	}
+	return (stack);
+}

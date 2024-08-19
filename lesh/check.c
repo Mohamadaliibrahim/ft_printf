@@ -12,35 +12,36 @@
 
 #include "push_swap.h"
 
-int	ft_contains(int num, char **av, int i)
+int	ft_contains(int num, char **av, int i, int flag)
 {
 	i++;
 	while (av[i])
 	{
-		if (ft_atoi(av[i], av) == num)
+		if (ft_atoi(av[i], av, flag) == num)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-long	ft_atoi(char *nptr, char **av)
+long	ft_atoi(char *nptr, char **av, int flag)
 {
 	size_t		i;
 	int			neg;
 
 	i = 0;
 	neg = 0;
-	check_sign_and_whitespace(nptr, &i, &neg, av);
+	check_sign_and_whitespace(nptr, &i, &neg, flag, av);
 	return (convert_to_long(nptr, i, neg));
 }
 
-void	check_sign_and_whitespace(char *nptr, size_t *i, int *neg, char **av)
+void	check_sign_and_whitespace(char *nptr, size_t *i, int *neg, int flag, char **av)
 {
-	if ((nptr[*i] == '-' || nptr[*i] == '+') && nptr[*i + 1] == '\0')
+	if ((nptr[*i] == '-' || nptr[*i] == '+') && ft_strlen(nptr) == 1 && av)
 	{
-		ft_printf("Error");
-		free_it(av);
+		ft_printf("Error\n");
+		if (flag)
+			free_it(av);
 		exit (1);
 	}
 	while (nptr[*i] == ' ' || (nptr[*i] >= 9 && nptr[*i] <= 13))

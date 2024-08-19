@@ -46,22 +46,22 @@ void	ft_validate_args(char **av, int flag, int i)
 	{
 		if (!ft_isnum(av[i]))
 		{
-			if (flag == 1)
+			if (flag)
 				free_it(av);
-			ft_error("Error");
+			ft_error("Error\n");
 		}
-		tmp = ft_atoi(av[i], av);
+		tmp = ft_atoi(av[i], av, flag);
 		if (tmp < -2147483648 || tmp > 2147483647)
 		{
 			if (flag == 1)
 				free_it(av);
-			ft_error("Error");
+			ft_error("Error\n");
 		}
-		if (ft_contains(tmp, av, i))
+		if (ft_contains(tmp, av, i, flag))
 		{
 			if (flag == 1)
 				free_it(av);
-			ft_error("Error");
+			ft_error("Error\n");
 		}
 		i++;
 	}
