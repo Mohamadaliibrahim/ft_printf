@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 10:24:54 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/08/19 10:24:58 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int ac, char *av[])
@@ -23,10 +35,6 @@ int	main(int ac, char *av[])
 		sort_three(&a);
 	else
 		push_swap(&a, &b, stack_len(a));
-	// if (stack_is_sorted(a))
-	// 	ft_printf("great");
-	// else
-	// 	ft_printf("NO");
 	free_stack(a);
 	free_stack(b);
 	return (0);

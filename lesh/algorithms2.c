@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithms2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 10:20:25 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/08/19 10:20:29 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*init_stack(void)
@@ -9,12 +21,11 @@ t_stack	*init_stack(void)
 		return (NULL);
 	stack->data = 0;
 	stack->cost = 0;
-	stack->target_node = NULL;  // Correct member assignment
+	stack->target_node = NULL;
 	stack->next = NULL;
 	stack->prev = NULL;
 	return (stack);
 }
-
 
 int	stack_is_empty(t_stack *stack)
 {
@@ -45,23 +56,24 @@ t_stack	*find_smallest(t_stack *stack)
 	return (min);
 }
 
-void current_index(t_stack *stack)
+void	current_index(t_stack *stack)
 {
-    int i;
-    int median;
+	int	i;
+	int	median;
 
-    if (!stack)
-        return;
-    i = 0;
-    median = stack_len(stack) / 2;
-    while (stack)
-    {
-        stack->index = i;
-        if (i <= median)
-            stack->above_median = true;
-        else
-            stack->above_median = false;
-        stack = stack->next;
-        i++;
-    }
+	if (!stack)
+		return ;
+	i = 0;
+	median = stack_len(stack) / 2;
+	while (stack)
+	{
+		stack->index = i;
+		if (i <= median)
+			stack->above_median = true;
+		else
+			stack->above_median = false;
+		stack = stack->next;
+		i++;
+	}
 }
+//stop!

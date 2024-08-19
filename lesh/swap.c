@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 10:24:26 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/08/19 10:24:30 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	swap(t_stack **stack)
@@ -8,10 +20,8 @@ static void	swap(t_stack **stack)
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return ;
-
 	first = *stack;
 	second = first->next;
-
 	temp_value = first->data;
 	first->data = second->data;
 	second->data = temp_value;

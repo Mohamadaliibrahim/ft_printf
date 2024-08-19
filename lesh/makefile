@@ -2,10 +2,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 EXTRAFLAGS = -lreadline -lncurses
 
-SRC =	check.c check1.c ft_split.c ft_strlcpy.c ft_strlen.c ft_substr.c\
-		let_stack_0.c let_stack_1.c push_swap.c reverse_rotate.c\
+SRC =	check.c check1.c ft_split.c ft_strlcpy.c ft_strlen.c\
+		ft_substr.c utils.c utils1.c push_swap.c reverse_rotate.c\
 		rotate.c swap.c push.c ft_strdup.c algorithms.c algorithms1.c\
-		algorithms2.c 
+		algorithms2.c algorithms3.c utils2.c
 
 OBJ = $(SRC:.c=.o)
 EXEC = push_swap

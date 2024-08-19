@@ -1,37 +1,63 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 10:22:00 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/08/19 10:22:03 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 int	ft_contains(int num, char **av, int i)
 {
 	i++;
 	while (av[i])
 	{
-		if (ft_atoi(av[i]) == num)
+		if (ft_atoi(av[i], av) == num)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-long	ft_atoi(const char *nptr)
+long	ft_atoi(char *nptr, char **av)
 {
 	size_t		i;
-	long		ans;
 	int			neg;
 
 	i = 0;
 	neg = 0;
-	ans = 0;
-	if((nptr[i] == '-' || nptr[i] == '+') && nptr[i + 1] == '\0')
-		ft_error("Error");
-	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	check_sign_and_whitespace(nptr, &i, &neg, av);
+	return (convert_to_long(nptr, i, neg));
+}
+
+void	check_sign_and_whitespace(char *nptr, size_t *i, int *neg, char **av)
+{
+	if ((nptr[*i] == '-' || nptr[*i] == '+') && nptr[*i + 1] == '\0')
 	{
-		if (nptr[i] == '-')
-			neg = 1;
-		i++;
+		ft_printf("Error");
+		free_it(av);
+		exit (1);
 	}
+	while (nptr[*i] == ' ' || (nptr[*i] >= 9 && nptr[*i] <= 13))
+		(*i)++;
+	if (nptr[*i] == '+' || nptr[*i] == '-')
+	{
+		if (nptr[*i] == '-')
+			*neg = 1;
+		(*i)++;
+	}
+}
+
+long	convert_to_long(char *nptr, size_t i, int neg)
+{
+	long	ans;
+
+	ans = 0;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		if (neg == 1)
@@ -57,60 +83,4 @@ int	ft_isnum(char *num)
 		i++;
 	}
 	return (1);
-}
-
-void	ft_validate_args(char **av, int flag, int i)
-{
-	long	tmp;
-
-	while (av[i])
-	{
-		if (!ft_isnum(av[i]))
-		{
-			if (flag == 1)
-				free_it(av);
-			ft_error("Error");
-		}
-		tmp = ft_atoi(av[i]);
-		if (tmp < -2147483648 || tmp > 2147483647)
-		{
-			if (flag == 1)
-				free_it(av);
-			ft_error("Error");
-		}
-		if (ft_contains(tmp, av, i))
-		{
-			if (flag == 1)
-				free_it(av);
-			ft_error("Error");
-		}
-		i++;
-	}
-}
-
-void	ft_check_args(int ac, char **av)
-{
-	int		i;
-	int		flag;
-
-	i = 0;
-	flag = 0;
-	if (ac == 2)
-	{
-		av = ft_split(av[1], ' ');
-		flag = 1;
-		i = 0;
-	}
-	else
-		i = 1;
-	ft_validate_args(av, flag, i);
-	//i = 1;
-	//while (i <= ac)
-	//{
-	//	if (av[i][0] == '-' && av[i][1] == '\0')
-	//		ft_error("Error");
-	//	i++;
-	//}
-	if (ac == 2)
-		free_it(av);
 }

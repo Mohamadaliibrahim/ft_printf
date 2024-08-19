@@ -13,6 +13,9 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
+#include "push_swap.h"
+#include <stdlib.h>
+
 static size_t	count_words(char const *s, char c)
 {
 	size_t	count;

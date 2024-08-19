@@ -1,33 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithms.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 10:16:57 by mohamibr          #+#    #+#             */
+/*   Updated: 2024/08/19 10:17:06 by mohamibr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_stack *push_swap(t_stack **stack_a, t_stack **stack_b, int size_a)
+t_stack	*push_swap(t_stack **stack_a, t_stack **stack_b, int size_a)
 {
-    if (size_a-- > 3 && !stack_is_sorted(*stack_a))
-        pb(stack_a, stack_b);
-    if (size_a-- > 3 && !stack_is_sorted(*stack_a))
-        pb(stack_a, stack_b);
-    while (size_a-- > 3 && !stack_is_sorted(*stack_a))
-    {
-        init_node_a(stack_a, stack_b);
-        move_a_to_b(stack_a, stack_b);
-    }
-    sort_three(stack_a);
-    while (*stack_b)
-    {
-        init_node_b(stack_a, stack_b);
-        move_b_to_a(stack_a, stack_b);
-    }
-    current_index(*stack_a);
-    while ((*stack_a)->data != find_smallest(*stack_a)->data)
-    {
-        if (find_smallest(*stack_a)->above_median)
-            ra(stack_a);
-        else
-            rra(stack_a);
-    }
-    return (*stack_a);
+	if (size_a-- > 3 && !stack_is_sorted(*stack_a))
+		pb(stack_a, stack_b);
+	if (size_a-- > 3 && !stack_is_sorted(*stack_a))
+		pb(stack_a, stack_b);
+	while (size_a-- > 3 && !stack_is_sorted(*stack_a))
+	{
+		init_node_a(stack_a, stack_b);
+		move_a_to_b(stack_a, stack_b);
+	}
+	sort_three(stack_a);
+	while (*stack_b)
+	{
+		init_node_b(stack_a, stack_b);
+		move_b_to_a(stack_a, stack_b);
+	}
+	current_index(*stack_a);
+	while ((*stack_a)->data != find_smallest(*stack_a)->data)
+	{
+		if (find_smallest(*stack_a)->above_median)
+			ra(stack_a);
+		else
+			rra(stack_a);
+	}
+	return (*stack_a);
 }
-
 
 t_stack	*get_cheapest(t_stack *stack)
 {
@@ -64,8 +75,6 @@ void	bring_on_top(t_stack **stack, t_stack *desired_node, char stack_name)
 	}
 }
 
-
-
 void	move_a_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest_node;
@@ -99,3 +108,4 @@ void	init_node_a(t_stack **a, t_stack **b)
 	*a = cost_analyst(*a, *b);
 	*a = set_cheapest(*a);
 }
+//stop!
