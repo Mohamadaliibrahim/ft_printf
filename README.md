@@ -115,8 +115,3 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 4. Push to the branch: `git push origin feature/my-feature`
 5. Open a pull request.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-As with the previous README, make sure to customize the links and repository details to match your own GitHub repository and project specifics.
