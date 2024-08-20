@@ -26,31 +26,33 @@ int	ft_contains(int num, char **av, int i, int flag)
 
 long	ft_atoi(char *nptr, char **av, int flag)
 {
-	size_t		i;
-	int			neg;
+	t_parse_info	info;
 
-	i = 0;
-	neg = 0;
-	check_sign_and_whitespace(nptr, &i, &neg, flag, av);
-	return (convert_to_long(nptr, i, neg));
+	info.i = 0;
+	info.neg = 0;
+	info.flag = flag;
+	info.av = av;
+	check_sign_and_whitespace(nptr, &info);
+	return (convert_to_long(nptr, info.i, info.neg));
 }
 
-void	check_sign_and_whitespace(char *nptr, size_t *i, int *neg, int flag, char **av)
+void	check_sign_and_whitespace(char *nptr, t_parse_info *info)
 {
-	if ((nptr[*i] == '-' || nptr[*i] == '+') && ft_strlen(nptr) == 1 && av)
+	if ((nptr[info->i] == '-' || nptr[info->i] == '+')
+		&& ft_strlen(nptr) == 1 && info->av)
 	{
-		ft_printf("Error\n");
-		if (flag)
-			free_it(av);
-		exit (1);
+		ft_printf("Error");
+		if (info->flag)
+			free_it(info->av);
+		exit(1);
 	}
-	while (nptr[*i] == ' ' || (nptr[*i] >= 9 && nptr[*i] <= 13))
-		(*i)++;
-	if (nptr[*i] == '+' || nptr[*i] == '-')
+	while (nptr[info->i] == ' ' || (nptr[info->i] >= 9 && nptr[info->i] <= 13))
+		info->i++;
+	if (nptr[info->i] == '+' || nptr[info->i] == '-')
 	{
-		if (nptr[*i] == '-')
-			*neg = 1;
-		(*i)++;
+		if (nptr[info->i] == '-')
+			info->neg = 1;
+		info->i++;
 	}
 }
 

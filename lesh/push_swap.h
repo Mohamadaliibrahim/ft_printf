@@ -21,6 +21,14 @@
 # include "ft_printf/ft_printf.h"
 # include <stdbool.h>
 
+typedef struct s_parse_info
+{
+	size_t	i;
+	int		neg;
+	int		flag;
+	char	**av;
+}	t_parse_info;
+
 typedef struct s_stack
 {
 	int					data;
@@ -76,7 +84,7 @@ int		ft_isnum(char *num);
 int		ft_contains(int num, char **av, int i, int flag);
 void	ft_check_args(int ac, char **av);
 long	convert_to_long(char *nptr, size_t i, int neg);
-void	check_sign_and_whitespace(char *nptr, size_t *i, int *neg, int flag, char **av);
+void	check_sign_and_whitespace(char *nptr, t_parse_info *info);
 long	ft_atoi(char *nptr, char **av, int flag);
 t_stack	*create_node(int value);
 

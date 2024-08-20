@@ -23,7 +23,7 @@ int	add_node_to_stack(char *arg, t_stack **stack)
 	new_node = create_node(value);
 	if (!new_node)
 	{
-		ft_error("Error\n");
+		ft_error("Error");
 		free_stack(*stack);
 		return (-1);
 	}
@@ -35,7 +35,7 @@ int	check_value_bounds(long value, t_stack **stack)
 {
 	if (value > INT_MAX || value < INT_MIN)
 	{
-		ft_error("Error\n");
+		ft_error("Error");
 		free_stack(*stack);
 		return (-1);
 	}

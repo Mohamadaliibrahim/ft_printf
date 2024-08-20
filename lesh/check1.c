@@ -48,20 +48,20 @@ void	ft_validate_args(char **av, int flag, int i)
 		{
 			if (flag)
 				free_it(av);
-			ft_error("Error\n");
+			ft_error("Error");
 		}
 		tmp = ft_atoi(av[i], av, flag);
 		if (tmp < -2147483648 || tmp > 2147483647)
 		{
 			if (flag == 1)
 				free_it(av);
-			ft_error("Error\n");
+			ft_error("Error");
 		}
 		if (ft_contains(tmp, av, i, flag))
 		{
 			if (flag == 1)
 				free_it(av);
-			ft_error("Error\n");
+			ft_error("Error");
 		}
 		i++;
 	}

@@ -52,7 +52,7 @@ int	main(int ac, char *av[])
 	b = NULL;
 	if (a == NULL)
 	{
-		ft_error("Error\n");
+		ft_error("Error");
 		return (1);
 	}
 	if (stack_is_sorted(a))
