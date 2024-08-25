@@ -28,7 +28,7 @@ To compile and use `ft_printf`, you need:
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/ft_printf.git
+git clone git@github.com:Mohamadaliibrahim/ft_printf.git
 cd ft_printf
 ```
 
