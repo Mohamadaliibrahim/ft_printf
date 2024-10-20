@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamibr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mohamibr <mohamibr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:21:18 by mohamibr          #+#    #+#             */
-/*   Updated: 2024/06/19 19:28:50 by mohamibr         ###   ########.fr       */
+/*   Updated: 2024/10/20 15:06:35 by mohamibr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../inc/ft_printf.h"
 
 void	check_1(const char ch, va_list ap, int *count)
 {
