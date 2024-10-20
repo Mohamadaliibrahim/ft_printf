@@ -83,7 +83,7 @@ The following flags are supported:
 To use `ft_printf` in your project, include the library header:
 
 ```c
-#include "ft_printf.h"
+#include "inc/ft_printf.h"
 ```
 
 Use it just like you would use `printf`:
