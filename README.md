@@ -30,7 +30,7 @@ Clone the repository to your local machine:
 ```bash
 git clone git@github.com:Mohamadaliibrahim/ft_printf.git
 ```
-enter the file
+Enter the file:
 ```bash
 cd ft_printf/ft_printf
 ```
